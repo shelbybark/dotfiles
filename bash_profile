@@ -1,4 +1,4 @@
-export PATH=/opt/local/bin:/opt/local/sbin:$HOME_DIR/django-trunk/django/bin:$HOME_DIR/bin:/usr/local/bin:$PATH
+export PATH=/opt/local/bin:/opt/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:$PATH
 export TERM=xterm-color
 alias ls='ls -G'
 alias ll='ls -hl'
