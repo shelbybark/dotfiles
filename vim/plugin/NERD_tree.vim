@@ -1,0 +1,1 @@
+/Users/shelbybark/Documents/gitapps/nerdtree/plugin/NERD_tree.vim

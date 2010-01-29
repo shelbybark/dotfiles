@@ -1,0 +1,8 @@
+settings.py
+*.pyc
+db
+db/*
+nesh
+fabfile.py*
+*.DS_Store
+.gitignore
