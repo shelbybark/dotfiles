@@ -101,7 +101,9 @@ fi
 export WORKON_HOME=$HOME/code/ve
 
 
-source $HOME/Documents/customscripts/virtualenvwrapper_bashrc
+# source $HOME/Documents/customscripts/virtualenvwrapper_bashrc
+source /usr/local/bin/virtualenvwrapper_bashrc
+
 
 source ~/.git-completion.sh
 
