@@ -36,6 +36,8 @@ set number
 " set cursorline
 
 
+set mouse=a
+
 
 " auto-completes *****************************************************************
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -59,3 +61,5 @@ colorscheme ir_black
 set t_Co=256 " 256 colors
 set background=dark
 
+map <F2> :NERDTreeToggle<CR>
+map <F4> :setfiletype htmldjango<CR>
