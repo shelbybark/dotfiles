@@ -36,7 +36,13 @@ set number
 " set cursorline
 
 
-set mouse=a
+" set mouse=a
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
 
 " auto-completes *****************************************************************
@@ -44,6 +50,13 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType python set ft=python.django " For SnipMate
+autocmd FileType html set ft=html.django_template " For SnipMate
+
+autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+
 
 filetype plugin on
 
@@ -54,6 +67,7 @@ set cursorline
 
 " Colors *************************************************************************
 colorscheme ir_black
+"colorscheme inspiration874125
 "colorscheme xoria256
 "colorscheme sunburst
 "colorscheme slate
@@ -63,3 +77,18 @@ set background=dark
 
 map <F2> :NERDTreeToggle<CR>
 map <F4> :setfiletype htmldjango<CR>
+
+" For mac users (using the 'apple' key)
+map <D-S-]> gt
+map <D-S-[> gT
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
+

@@ -22,6 +22,7 @@ alias mysql='/usr/local/mysql/bin/mysql'
 alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
 alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 alias openr='open .'
+alias screenr='screen -r'
 alias cx="ssh-coptix-tunnels"
 
 parse_git_branch() {
