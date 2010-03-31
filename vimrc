@@ -29,20 +29,23 @@ set binary noeol
 " make that backspace key work the way it should
 set backspace=indent,eol,start
 
-"colo wombat
-
 set number
 
-" set cursorline
+set incsearch
 
 
-" set mouse=a
+if has('mouse')
+  set mouse=a
+endif
+
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
  
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
+if has("gui_running")
+		set listchars=tab:▸\ ,eol:¬
+endif
 
 
 " auto-completes *****************************************************************
@@ -50,15 +53,24 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
+
+" File Types *****************************************************************
 autocmd FileType python set ft=python.django " For SnipMate
 autocmd FileType html set ft=html.django_template " For SnipMate
 
 autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 
+
+au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
 
 filetype plugin on
+
+
 
 
 " Cursor highlights **************************************************************
@@ -66,12 +78,13 @@ set cursorline
 "set cursorcolumn
 
 " Colors *************************************************************************
-colorscheme ir_black
+""colorscheme ir_black
 "colorscheme inspiration874125
 "colorscheme xoria256
-"colorscheme sunburst
+colorscheme sunburst
 "colorscheme slate
 "colorscheme django
+"colo wombat
 set t_Co=256 " 256 colors
 set background=dark
 
@@ -92,3 +105,28 @@ map <D-8> 8gt
 map <D-9> 9gt
 map <D-0> :tablast<CR>
 
+
+" http://stackoverflow.com/questions/2400264/is-it-possible-to-apply-vim-configurations-without-restarting/2400289#2400289
+if has("autocmd")
+  augroup myvimrchooks
+    au!
+    autocmd bufwritepost .vimrc source ~/.vimrc
+  augroup END
+endif
+
+" Mappings for a recovering TextMate user {{{1
+" Indentation {{{2
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Turn off menu bar in MacVim
+set guioptions-=T
+set guifont=Menlo:h12
+
+
+" Non-gui
+if !has("gui_running")
+		colo ir_black
+endif

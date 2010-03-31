@@ -25,7 +25,11 @@ endif
 hi Cursor 		guifg=NONE    guibg=#656565 gui=none
 hi Normal 		guifg=#f6f3e8 guibg=#242424 gui=none
 hi NonText 		guifg=#808080 guibg=#303030 gui=none
-hi LineNr 		guifg=#857b6f guibg=#000000 gui=none
+" *** Original wombat Line numbers grey on grey -- nice 
+"hi LineNr 		guifg=#857b6f guibg=#000000 gui=none
+"
+" *** modified to resemble TextMate's lightgrey on lightgrey
+hi LineNr 		guifg=#857b6f guibg=#eeeeee gui=none
 hi StatusLine 	guifg=#f6f3e8 guibg=#444444 gui=italic
 hi StatusLineNC guifg=#857b6f guibg=#444444 gui=none
 hi VertSplit 	guifg=#444444 guibg=#444444 gui=none
