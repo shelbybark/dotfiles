@@ -20,8 +20,9 @@ if has("gui_running")
   highlight lineNr guifg=#888888 guibg=#DEDEDE
   highlight VertSplit guifg=#DEDEDE guibg=#888888
   highlight IncSearch guibg=#16181A
-  highlight Cursor guibg=#DDDDDD
+  highlight Cursor guibg=#ffba0a
 	highlight CursorLine guibg=#383838
+	highlight CursorColumn		guibg=#2b2b2b
   highlight Search guibg=#16181A guifg=NONE
   highlight MatchParen guibg=#DDDDDD guifg=#000000
  
@@ -29,18 +30,23 @@ if has("gui_running")
   highlight Normal guifg=White guibg=#242424
   highlight NonText 		guifg=#535353		gui=none
   highlight SpecialKey	guifg=#535353		gui=none
-  highlight Visual   guifg=#f6f3e8 guibg=#393468 gui=none
+  highlight Visual   guifg=#4289a7 guibg=#b4e4fd gui=none
 
 	
+  hi Folded                    guifg=#F6F3E8 guibg=#444444		gui=NONE
+  hi Directory                 guifg=#A5C261 gui=NONE 
 	
-  highlight Keyword guifg=#e19677		gui=none
-  highlight Include   guifg=#e19677	gui=none
-  highlight Define guifg=#e19677		gui=none 
+  highlight Keyword guifg=#f0976f		gui=none
+  highlight Include   guifg=#f0976f		gui=none
+  highlight Define guifg=#9add50		gui=none 
   highlight Statement guifg=#e19677	gui=none
+  highlight Macro		guifg=#89BDFF		gui=none
   highlight Function guifg=#89BDFF gui=none
+  highlight PreProc guifg=#89BDFF gui=none
+  highlight Identifier guifg=#89BDFF gui=none
   highlight Comment guifg=#AEAEAE gui=none
   highlight SpecialComment guifg=#AEAEAE 
-  highlight Type guifg=White gui=NONE
+  highlight Type guifg=#a692a9 gui=NONE
   highlight Constant guifg=#3387CC
   highlight String guifg=#65B042
   highlight Title guifg=#FFFFFF
@@ -51,6 +57,11 @@ if has("gui_running")
   highlight htmlEndTag guifg=#80BDF7 
   highlight htmlTagName guifg=#80BDF7
   highlight htmlArg guifg=#80BDF7 
+
+" Django Templates
+  highlight djangoTagBlock guifg=#89bdff
+	highlight djangoStatement guifg=#e18862
+	hi djangoArgument guifg=#5aa034
  
 " Ruby specific highlight
   highlight rubyClass guifg=#e19677

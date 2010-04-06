@@ -33,6 +33,8 @@ set number
 
 set incsearch
 
+set cpoptions+=$
+set virtualedit=all
 
 if has('mouse')
   set mouse=a
@@ -55,9 +57,6 @@ autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
-" File Types *****************************************************************
-autocmd FileType python set ft=python.django " For SnipMate
-autocmd FileType html set ft=html.django_template " For SnipMate
 
 autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
@@ -66,7 +65,12 @@ autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabsto
 autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 
 
-au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+" File Types *****************************************************************
+autocmd FileType html set filetype=html.django_template " For SnipMate
+autocmd FileType python set filetype=python.django " For SnipMate
+
+
+autocmd BufRead,BufNewFile jquery.*.js *.js set filetype=javascript syntax=jquery
 
 filetype plugin on
 
@@ -81,7 +85,8 @@ set cursorline
 ""colorscheme ir_black
 "colorscheme inspiration874125
 "colorscheme xoria256
-colorscheme sunburst
+" colorscheme sunburst
+colorscheme wombat256_alt
 "colorscheme slate
 "colorscheme django
 "colo wombat
@@ -89,7 +94,15 @@ set t_Co=256 " 256 colors
 set background=dark
 
 map <F2> :NERDTreeToggle<CR>
+map <F3> :set ft=html.django_template<CR>
 map <F4> :setfiletype htmldjango<CR>
+
+
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
 
 " For mac users (using the 'apple' key)
 map <D-S-]> gt
@@ -130,3 +143,26 @@ set guifont=Menlo:h12
 if !has("gui_running")
 		colo ir_black
 endif
+
+" Set status bar the way we like it
+" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" format markers:
+"   %< truncation point
+"   %n buffer number
+"   %f relative path to file
+"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
+"   %r readonly flag [RO]
+"   %y filetype [ruby]
+"   %= split point for left and right justification
+"   %-35. width specification
+"   %l current line number
+"   %L number of lines in buffer
+"   %c current column number
+"   %V current virtual column number (-n), if different from %c
+"   %P percentage through buffer
+"   %) end of width specification
+set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+
+
+map <silent><F5> :NEXTCOLOR<cr>
+map <silent><F6> :PREVCOLOR<cr>
