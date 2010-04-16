@@ -113,3 +113,7 @@ set EDITOR=vi
 set -o vi
 
 set TERM xterm-256color; export TERM
+
+# make tab cycle through commands instead of listing 
+bind '"\t":menu-complete'
+

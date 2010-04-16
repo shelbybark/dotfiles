@@ -242,7 +242,8 @@ call <SID>X("CursorColumn",	"",			"2d2d2d",	"")
 			"IncSearch
 call <SID>X("Search",		"444444",	"af87d7",	"")
 call <SID>X("MatchParen",	"ecee90",	"857b6f",	"bold")
-call <SID>X("SpecialKey",	"6c6c6c",	"2d2d2d",	"none")
+call <SID>X("SpecialKey",	"464747",	"",	"none")
+call <SID>X("NonText",	"464747",	"",	"none")
 " call <SID>X("Visual",		"ecee90",	"597418",	"none")
 call <SID>X("LineNr",		"746b61",	"121212",	"none")
 call <SID>X("Folded",		"a0a8b0",	"404048",	"none")
@@ -256,7 +257,7 @@ call <SID>X("StatusLineNC",	"857b6f",	"444444",	"none")
 			"WildMenu
 call <SID>X("Pmenu",		"f6f3e8",	"444444",	"")
 call <SID>X("PmenuSel",		"121212",	"caeb82",	"")
-call <SID>X("WarningMsg",	"ff0000",	"",			"")
+call <SID>X("WarningMsg",	"c0001c",	"",			"")
 			"ErrorMsg
 			"ModeMsg
 			"MoreMsg
@@ -285,7 +286,6 @@ call <SID>X("Todo",			"857b6f",	"",			"italic")
 			"Ignore
 
 hi! link VisualNOS	Visual
-hi! link NonText	LineNr
 hi! link FoldColumn	Folded
 
 " delete functions {{{

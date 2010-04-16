@@ -113,6 +113,65 @@ syn keyword pythonOperator	and in is not or
 " Decorators (new in Python 2.4)
 syn match   pythonDecorator	"@" display nextgroup=pythonFunction skipwhite
 
+" Testing Django/Message attributes
+syn match   djangoAttribute	"db.NameProperty" display 
+syn match   djangoAttribute	"db.HtmlProperty" display 
+syn match   djangoAttribute	"db.DateProperty" display 
+syn match   djangoAttribute	"db.DateTimeProperty" display 
+syn match   djangoAttribute	"db.EmailProperty" display 
+syn match   djangoAttribute	"db.FloatProperty" display 
+syn match   djangoAttribute	"db.GeoPtProperty" display 
+syn match   djangoAttribute	"db.IntegerProperty" display 
+syn match   djangoAttribute	"db.LinkProperty" display 
+syn match   djangoAttribute	"db.ListProperty" display 
+syn match   djangoAttribute	"db.PhoneNumberProperty" display 
+syn match   djangoAttribute	"db.PostalAddressProperty" display 
+syn match   djangoAttribute	"db.ReferenceProperty" display 
+syn match   djangoAttribute	"db.TimeProperty" display 
+syn match   djangoAttribute	"db.DictProperty" display 
+syn match   djangoAttribute	"db.DirectoryProperty" display 
+syn match   djangoAttribute	"db.SetProperty" display 
+syn match   djangoAttribute	"db.ItemsProperty" display 
+syn match   djangoAttribute	"db.HeroshotProperty" display 
+syn match   djangoAttribute	"db.ImageProperty" display 
+syn match   djangoAttribute	"db.FileProperty" display 
+syn match   djangoAttribute	"db.ItemProperty" display 
+syn match   djangoAttribute	"db.PythonProperty" display 
+syn match   djangoAttribute	"db.PythonFormProperty" display 
+syn match   djangoAttribute	"db.TemplateProperty" display 
+syn match   djangoAttribute	"db.ImageSizeProperty" display 
+syn match   djangoAttribute	"db.JavascriptProperty" display 
+syn match   djangoAttribute	"db.PathProperty" display 
+syn match   djangoAttribute	"db.SlugProperty" display 
+syn match   djangoAttribute	"db.TagsetsProperty" display 
+syn match   djangoAttribute	"models.AutoField" display 
+syn match   djangoAttribute	"models.BooleanField" display 
+syn match   djangoAttribute	"models.CharField" display 
+syn match   djangoAttribute	"models.CommaSeparatedIntegerField" display 
+syn match   djangoAttribute	"models.DateField" display 
+syn match   djangoAttribute	"models.DateTimeField" display 
+syn match   djangoAttribute	"models.DecimalField" display 
+syn match   djangoAttribute	"models.EmailField" display 
+syn match   djangoAttribute	"models.FileField" display 
+syn match   djangoAttribute	"models.FilePathField" display 
+syn match   djangoAttribute	"models.FloatField" display 
+syn match   djangoAttribute	"models.ImageField" display 
+syn match   djangoAttribute	"models.IntegerField" display 
+syn match   djangoAttribute	"models.IPAddressField" display 
+syn match   djangoAttribute	"models.NullBooleanField" display 
+syn match   djangoAttribute	"models.PositiveIntegerField" display 
+syn match   djangoAttribute	"models.PositiveSmallIntegerField" display 
+syn match   djangoAttribute	"models.SlugField" display 
+syn match   djangoAttribute	"models.SmallIntegerField" display 
+syn match   djangoAttribute	"models.TextField" display 
+syn match   djangoAttribute	"models.TimeField" display 
+syn match   djangoAttribute	"models.URLField" display 
+syn match   djangoAttribute	"models.XMLField" display 
+syn match   djangoAttribute	"models.ForeignKey" display 
+syn match   djangoAttribute	"models.ManyToManyField" display 
+syn match   djangoAttribute	"models.OneToOneField" display 
+
+
 " Comments
 syn match   pythonComment	"#.*$" display contains=pythonTodo,@Spell
 syn match   pythonRun		"\%^#!.*$"
@@ -308,6 +367,7 @@ if version >= 508 || !exists("did_python_syn_inits")
   HiLink pythonOperator		Operator
 
   HiLink pythonDecorator	Define
+	HiLink djangoAttribute	Type
 
   HiLink pythonComment		Comment
   HiLink pythonCoding		Special

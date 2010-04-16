@@ -33,8 +33,12 @@ set number
 
 set incsearch
 
+set scrolloff=5
+
 set cpoptions+=$
-set virtualedit=all
+
+" Allow cursor to move anywhere.
+"set virtualedit=all
 
 if has('mouse')
   set mouse=a
@@ -43,6 +47,9 @@ endif
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" folding toggle
+:nnoremap <space> za
  
 " Use the same symbols as TextMate for tabstops and EOLs
 if has("gui_running")
@@ -50,15 +57,9 @@ if has("gui_running")
 endif
 
 
-" auto-completes *****************************************************************
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
 
-
-autocmd FileType * set tabstop=2|set shiftwidth=2|set noexpandtab
+autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
@@ -66,6 +67,7 @@ autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab|set sof
 
 
 " File Types *****************************************************************
+
 autocmd FileType html set filetype=html.django_template " For SnipMate
 autocmd FileType python set filetype=python.django " For SnipMate
 
@@ -94,8 +96,6 @@ set t_Co=256 " 256 colors
 set background=dark
 
 map <F2> :NERDTreeToggle<CR>
-map <F3> :set ft=html.django_template<CR>
-map <F4> :setfiletype htmldjango<CR>
 
 
 map <C-h> <C-w>h
@@ -120,12 +120,12 @@ map <D-0> :tablast<CR>
 
 
 " http://stackoverflow.com/questions/2400264/is-it-possible-to-apply-vim-configurations-without-restarting/2400289#2400289
-if has("autocmd")
-  augroup myvimrchooks
-    au!
-    autocmd bufwritepost .vimrc source ~/.vimrc
-  augroup END
-endif
+"if has("autocmd")
+"  augroup myvimrchooks
+"	au!
+"	autocmd bufwritepost .vimrc source ~/.vimrc
+"  augroup END
+"endif
 
 " Mappings for a recovering TextMate user {{{1
 " Indentation {{{2
@@ -164,5 +164,103 @@ endif
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
 
-map <silent><F5> :NEXTCOLOR<cr>
-map <silent><F6> :PREVCOLOR<cr>
+
+function LoadDjangoGoodies()
+
+	" Django customization
+	" it only works if you are at base of django site
+	if filewritable('settings.py')
+
+		" set DJANGO_SETTINGS_MODULE
+		let $DJANGO_SETTINGS_MODULE=split( getcwd(),'/')[-1].".settings"
+		" set right type of file, python.django for .py files,
+		" htmldjango.django_template.xhtml or htmldjango.django_template.html
+		" for html files. This bigname for html ft is to use both syntax of
+		" Dave Hodder and SnipMate of Michael Sanders (and xhtml/html goodies
+		" too)
+		let l:escapefromhere=0
+    	if &ft=="python"
+			set ft=python.django
+		elseif &ft=="html" || &ft=="xhtml"
+			set ft=htmldjango.html
+		else
+			let l:escapefromhere=1
+		endif
+
+		if l:escapefromhere == 0
+			" Set python path on enviroment, vim and python
+			" if you are at /www/mysite/ we add to path /www and /www/mysite
+			" so can complete mysite.
+			let $PYTHONPATH .= ":/".join(split( getcwd(),'/')[0:-2],'/')."/:/".join(split( getcwd(),'/')[0:-1],'/')."/"
+			exec "set path+='/".join(split( getcwd(),'/')[0:-2],'/')."/,/".join(split( getcwd(),'/')[0:-1],'/')."/'"
+			python import os,sys,vim
+			exec "python sys.path.insert(0,'/".join(split( getcwd(),'/')[0:-2],'/')."')"
+			exec "python sys.path.insert(0,'/".join(split( getcwd(),'/')[0:-1],'/')."')"
+
+		endif
+	endif
+endfunction
+
+
+" Python customization {
+function LoadPythonGoodies()
+
+	if &ft=="python"||&ft=="html"||&ft=="xhtml"
+
+		" settings for django, for something unknow I need to call before python
+		" path set
+		call LoadDjangoGoodies()
+
+		" set python path to vim
+    	python << EOF
+import os, sys, vim
+
+for p in sys.path:
+    if os.path.isdir(p):
+		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+EOF
+
+		" some nice adjustaments to show errors
+    	syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display 
+		syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display 
+		syn match pythonError "^\s*for\s.*[^:]\s*$" display 
+		syn match pythonError "^\s*except\s*$" display 
+		syn match pythonError "^\s*finally\s*$" display 
+		syn match pythonError "^\s*try\s*$" display 
+		syn match pythonError "^\s*else\s*$" display 
+		syn match pythonError "^\s*else\s*[^:].*" display 
+		"syn match pythonError "^\s*if\s.*[^\:]$" display 
+		syn match pythonError "^\s*except\s.*[^\:]$" display 
+		syn match pythonError "[;]$" display 
+		syn keyword pythonError         do  
+
+    	let python_highlight_builtins = 1
+    	let python_highlight_exceptions = 1
+    	let python_highlight_string_formatting = 1
+    	let python_highlight_string_format = 1
+    	let python_highlight_string_templates = 1
+    	let python_highlight_indent_errors = 1
+    	let python_highlight_space_errors = 1
+    	let python_highlight_doctests = 1
+
+		" complain to PEP 8 (Style Guide for Python Code) : http://www.python.org/dev/peps/pep-0008/
+		" I added here too in case of make some shit in middle code :D
+		set ai tw=79 ts=4 sts=4 sw=4 et
+	
+	endif
+
+endfunction
+
+if !exists("myautocmds")
+	let g:myautocmds=1
+
+	"call LoadPythonGoodies()
+	"autocmd Filetype python,html,xhtml call LoadPythonGoodies()
+	au BufNewFile,BufRead *.py,*.html call LoadPythonGoodies()
+
+	" Omni completion
+	"autocmd FileType python set omnifunc=pythoncomplete#Complete
+	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+endif
