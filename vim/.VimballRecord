@@ -1,1 +1,2 @@
 loremipsum.vba: call delete('/Users/shelbybark/.vim/autoload/loremipsum.vim')|call delete('/Users/shelbybark/.vim/autoload/loremipsum.txt')|call delete('/Users/shelbybark/.vim/plugin/loremipsum.vim')|call delete('/Users/shelbybark/.vim/doc/loremipsum.txt')
+conque_term_1.0.vba: call delete('/Users/shelbybark/.vim/autoload/conque_term.vim')|call delete('/Users/shelbybark/.vim/doc/conque_term.txt')|call delete('/Users/shelbybark/.vim/plugin/conque_term.vim')|call delete('/Users/shelbybark/.vim/syntax/conque_term.vim')

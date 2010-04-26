@@ -135,6 +135,7 @@ syn match   djangoAttribute	"db.ItemsProperty" display
 syn match   djangoAttribute	"db.HeroshotProperty" display 
 syn match   djangoAttribute	"db.ImageProperty" display 
 syn match   djangoAttribute	"db.FileProperty" display 
+syn match   djangoAttribute	"db.BooleanProperty" display 
 syn match   djangoAttribute	"db.ItemProperty" display 
 syn match   djangoAttribute	"db.PythonProperty" display 
 syn match   djangoAttribute	"db.PythonFormProperty" display 
