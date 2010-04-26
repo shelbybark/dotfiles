@@ -108,7 +108,7 @@ source $HOME/.dotfiles/virtualenvwrapper_bashrc
 
 
 # source ~/.git-completion.sh
-source $HOME/.dotfiles/.git-completion.sh
+source $HOME/.dotfiles/git-completion.sh
 
 set EDITOR=vi
 
