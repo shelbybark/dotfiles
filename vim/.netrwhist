@@ -1,11 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/Users/shelbybark/mgit/whimports.com/whimports/templates'
-let g:netrw_dirhist_2='/Users/shelbybark/mgit/andyberke.com/andyberke'
-let g:netrw_dirhist_3='/Users/shelbybark/Downloads/vim-confs-latest'
-let g:netrw_dirhist_4='/Users/shelbybark/Downloads/vim-confs-latest/vim'
-let g:netrw_dirhist_5='/Users/shelbybark/mgit/andyberke.com/andyberke/templates'
-let g:netrw_dirhist_6='/Users/shelbybark/mgit/andyberke.com/andyberke'
-let g:netrw_dirhist_7='/Users/shelbybark/django-code/shelbybark'
-let g:netrw_dirhist_8='/Users/shelbybark/mgit/andyberke.com/andyberke'
-let g:netrw_dirhist_9='/Users/shelbybark/mgit/mtzdb.com/mtzdb'
+let g:netrw_dirhist_cnt =0

@@ -50,6 +50,9 @@ endif
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
+" Set alt esc
+inoremap kj <Esc>
+
 " folding toggle
 :nnoremap <space> za
  
