@@ -179,7 +179,9 @@ endif
 "   %) end of width specification
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
-
+" zencoding settings
+let g:user_zen_expandabbr_key = '<c-e>'
+let g:user_zen_next_key = '<c-n>'
 
 function LoadDjangoGoodies()
 
@@ -260,7 +262,6 @@ EOF
     	let python_highlight_doctests = 1
 
 		" complain to PEP 8 (Style Guide for Python Code) : http://www.python.org/dev/peps/pep-0008/
-		" I added here too in case of make some shit in middle code :D
 		set ai tw=79 ts=4 sts=4 sw=4 et
 	
 	endif
