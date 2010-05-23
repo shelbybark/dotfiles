@@ -1,4 +1,5 @@
 settings.py
+shelbybark.py
 *.pyc
 db
 db/*

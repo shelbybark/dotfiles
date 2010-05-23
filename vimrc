@@ -125,14 +125,9 @@ map <D-0> :tablast<CR>
 
 vmap <D-j> gj
 vmap <D-k> gk
-vmap <D-4> g$
-vmap <D-6> g^
-vmap <D-0> g^
-nmap <D-j> gj
-nmap <D-k> gk
-nmap <D-4> g$
-nmap <D-6> g^
-nmap <D-0> g^
+"vmap <D-4> g$
+"map <D-6> g^
+"map <D-0> g^
 
 
 " http://stackoverflow.com/questions/2400264/is-it-possible-to-apply-vim-configurations-without-restarting/2400289#2400289
@@ -281,3 +276,5 @@ if !exists("myautocmds")
 	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 endif
+
+map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
