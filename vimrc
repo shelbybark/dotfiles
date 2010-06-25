@@ -51,7 +51,7 @@ endif
 nmap <leader>l :set list!<CR>
 
 " Set alt esc
-inoremap kj <Esc>
+"inoremap kj <Esc>
 
 " folding toggle
 :nnoremap <space> za
@@ -93,7 +93,8 @@ set cursorline
 "colorscheme inspiration874125
 "colorscheme xoria256
 " colorscheme sunburst
-colorscheme wombat256_alt
+"colorscheme wombat256_alt
+colorscheme vilight
 "colorscheme slate
 "colorscheme django
 "colo wombat
@@ -101,6 +102,8 @@ set t_Co=256 " 256 colors
 set background=dark
 
 map <F2> :NERDTreeToggle<CR>
+
+map <F3> :%! tidy -q -i -ashtml % <CR>
 
 
 map <C-h> <C-w>h
@@ -278,3 +281,4 @@ if !exists("myautocmds")
 endif
 
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+

@@ -24,6 +24,7 @@ alias pydir='python -c "from distutils.sysconfig import get_python_lib; print ge
 alias openr='open .'
 alias screenr='screen -r'
 alias cx="ssh-coptix-tunnels"
+alias herod-ssh="ssh herod.hosts.coptix.com"
 alias screenm="screen -S MVM -t MVM"
 
 parse_git_branch() {
