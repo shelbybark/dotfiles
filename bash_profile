@@ -4,6 +4,7 @@ alias ls='ls -G'
 alias ll='ls -hl'
 alias mate='~/bin/mate'
 alias mater='~/bin/mate .'
+alias vimr='mvim .'
 alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
 alias n='git status'
 alias gd='git diff'
@@ -25,6 +26,7 @@ alias openr='open .'
 alias screenr='screen -r'
 alias cx="ssh-coptix-tunnels"
 alias herod-ssh="ssh herod.hosts.coptix.com"
+alias rove-ssh="ssh rove.hosts.coptix.com"
 alias screenm="screen -S MVM -t MVM"
 
 parse_git_branch() {

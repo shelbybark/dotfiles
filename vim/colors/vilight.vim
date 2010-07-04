@@ -22,7 +22,8 @@ hi LineNr         guifg=#665f57           guibg=#282828
 "hi LineNr         guifg=#665f57           guibg=#d5dcee
 hi ModeMsg        guifg=#f9ee98           guibg=#141414
 hi MoreMsg        guifg=#f9ee98           guibg=#141414
-hi NonText        guifg=#665f57           guibg=#141414
+hi NonText        guifg=#2e2e2e           guibg=#141414
+hi SpecialKey        guifg=#2e2e2e           guibg=#141414
 hi Search         guifg=#f8f8f8           guibg=#4f94cd     gui=underline
 hi StatusLine     guifg=#0e2231           guibg=#8693a5
 hi StatusLineNC   guifg=#0e2231           guibg=#8693a5
