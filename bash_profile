@@ -28,6 +28,8 @@ alias cx="ssh-coptix-tunnels"
 alias herod-ssh="ssh herod.hosts.coptix.com"
 alias rove-ssh="ssh rove.hosts.coptix.com"
 alias screenm="screen -S MVM -t MVM"
+alias topm="top -o rsize"
+alias topc="top -o cpu"
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
