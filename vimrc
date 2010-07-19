@@ -180,6 +180,7 @@ set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 " zencoding settings
 let g:user_zen_expandabbr_key = '<c-e>'
 let g:user_zen_next_key = '<c-n>'
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
 
 function LoadDjangoGoodies()
 

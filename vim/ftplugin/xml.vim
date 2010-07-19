@@ -1,1 +1,1 @@
-/Users/shelbybark/Documents/customscripts/xmledit/xml.vim
+/Users/shelbybark/Documents/gitapps/xmledit/ftplugin/xml.vim
