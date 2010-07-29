@@ -155,7 +155,8 @@ set guifont=Menlo:h12
 
 " Non-gui
 if !has("gui_running")
-		colo ir_black
+		""colo ir_black
+		colo molokai
 endif
 
 " Set status bar the way we like it
@@ -283,3 +284,8 @@ endif
 
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 
+" TwitVim settings
+let twitvim_browser_cmd = 'open -a Google\ Chrome'
+let g:twitvim_enable_python=1
+
+map <LocalLeader>tf :FriendsTwitter<cr>

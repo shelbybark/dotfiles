@@ -28,6 +28,7 @@ alias cx="ssh-coptix-tunnels"
 alias herod-ssh="ssh herod.hosts.coptix.com"
 alias rove-ssh="ssh rove.hosts.coptix.com"
 alias screenm="screen -S MVM -t MVM"
+alias mshell="mvm shell"
 alias topm="top -o rsize"
 alias topc="top -o cpu"
 
@@ -43,7 +44,7 @@ then
         then
                 export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(parse_git_branch) \$ \[\033[00m\]'
         else
-                export PS1='\[\033[01;33m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
+                export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
         fi
 fi
 
@@ -120,8 +121,78 @@ set EDITOR=vi
 
 set -o vi
 
-set TERM xterm-256color; export TERM
+# set TERM xterm-256color; export TERM
 
 # make tab cycle through commands instead of listing 
 bind '"\t":menu-complete'
+
+
+# TESTING
+if [ "$TERM" = "xterm" ] ; then
+    if [ -z "$COLORTERM" ] ; then
+        if [ -z "$XTERM_VERSION" ] ; then
+            echo "Warning: Terminal wrongly calling itself 'xterm'."
+        else
+            case "$XTERM_VERSION" in
+            "XTerm(256)") TERM="xterm-256color" ;;
+            "XTerm(88)") TERM="xterm-88color" ;;
+            "XTerm") ;;
+            *)
+                echo "Warning: Unrecognized XTERM_VERSION: $XTERM_VERSION"
+                ;;
+            esac
+        fi
+    else
+        case "$COLORTERM" in
+            gnome-terminal)
+                # Those crafty Gnome folks require you to check COLORTERM,
+                # but don't allow you to just *favor* the setting over TERM.
+                # Instead you need to compare it and perform some guesses
+                # based upon the value. This is, perhaps, too simplistic.
+                TERM="gnome-256color"
+                ;;
+            *)
+                echo "Warning: Unrecognized COLORTERM: $COLORTERM"
+                ;;
+        esac
+    fi
+fi
+
+
+
+SCREEN_COLORS="`tput colors`"
+if [ -z "$SCREEN_COLORS" ] ; then
+    case "$TERM" in
+        screen-*color-bce)
+            echo "Unknown terminal $TERM. Falling back to 'screen-bce'."
+            export TERM=screen-bce
+            ;;
+        *-88color)
+            echo "Unknown terminal $TERM. Falling back to 'xterm-88color'."
+            export TERM=xterm-88color
+            ;;
+        *-256color)
+            echo "Unknown terminal $TERM. Falling back to 'xterm-256color'."
+            export TERM=xterm-256color
+            ;;
+    esac
+    SCREEN_COLORS=`tput colors`
+fi
+if [ -z "$SCREEN_COLORS" ] ; then
+    case "$TERM" in
+        gnome*|xterm*|konsole*|aterm|[Ee]term)
+            echo "Unknown terminal $TERM. Falling back to 'xterm'."
+            export TERM=xterm
+            ;;
+        rxvt*)
+            echo "Unknown terminal $TERM. Falling back to 'rxvt'."
+            export TERM=rxvt
+            ;;
+        screen*)
+            echo "Unknown terminal $TERM. Falling back to 'screen'."
+            export TERM=screen
+            ;;
+    esac
+    SCREEN_COLORS=`tput colors`
+fi
 
