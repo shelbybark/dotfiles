@@ -39,6 +39,9 @@ set cpoptions+=$
 
 set linebreak
 
+set ignorecase
+set smartcase
+
 " Allow cursor to move anywhere.
 set virtualedit=all
 
@@ -276,7 +279,7 @@ if !exists("myautocmds")
 	au BufNewFile,BufRead *.py,*.html call LoadPythonGoodies()
 
 	" Omni completion
-	"autocmd FileType python set omnifunc=pythoncomplete#Complete
+	autocmd FileType python set omnifunc=pythoncomplete#Complete
 	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 	autocmd FileType css set omnifunc=csscomplete#CompleteCSS

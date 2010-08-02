@@ -1,8 +1,8 @@
 " Vim syntax file
 " Language:	Cascading Style Sheets
-" Maintainer:	Claudio Fleiner <claudio@fleiner.com>
-" URL:		http://www.fleiner.com/vim/syntax/css.vim
-" Last Change:	2006 Jun 19
+" Maintainer:	Caleb Cushing <xenoterracide@gmail.com>
+" URL:		http://github.com/xenoterracide/css.vim
+" Last Change:	2010 Jan 2
 " CSS2 by Nikolai Weibull
 " Full CSS2, HTML4 support by Yeti
 
@@ -19,13 +19,13 @@ endif
 
 syn case ignore
 
-syn keyword cssTagName abbr acronym address applet area a b base
+syn keyword cssTagName abbr acronym address applet area article a b base
 syn keyword cssTagName basefont bdo big blockquote body br button
 syn keyword cssTagName caption center cite code col colgroup dd del
-syn keyword cssTagName dfn dir div dl dt em fieldset font form frame
-syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head hr html img i
+syn keyword cssTagName dfn dir div dl dt em fieldset font footer form frame
+syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head header hr html img i
 syn keyword cssTagName iframe img input ins isindex kbd label legend li
-syn keyword cssTagName link map menu meta noframes noscript ol optgroup
+syn keyword cssTagName link map menu meta nav noframes noscript ol optgroup
 syn keyword cssTagName option p param pre q s samp script select small
 syn keyword cssTagName span strike strong style sub sup tbody td
 syn keyword cssTagName textarea tfoot th thead title tr tt ul u var
@@ -39,16 +39,20 @@ syn match cssSelectorOp2 "[~|]\?=" contained
 syn region cssAttributeSelector matchgroup=cssSelectorOp start="\[" end="]" transparent contains=cssUnicodeEscape,cssSelectorOp2,cssStringQ,cssStringQQ
 
 try
-syn match cssIdentifier "#[A-Za-zÀ-ÿ_@][A-Za-zÀ-ÿ0-9_@-]*"
+syn match cssIdentifier "#[A-Za-zÃ€-Ã¿_@][A-Za-zÃ€-Ã¿0-9_@-]*"
 catch /^.*/
 syn match cssIdentifier "#[A-Za-z_@][A-Za-z0-9_@-]*"
 endtry
 
 
 syn match cssMedia "@media\>" nextgroup=cssMediaType skipwhite skipnl
-syn keyword cssMediaType contained screen print aural braile embosed handheld projection ty tv all nextgroup=cssMediaComma,cssMediaBlock skipwhite skipnl
+syn keyword cssMediaType contained screen print aural braile embosed handheld projection ty tv all nextgroup=cssMediaComma,cssMediaBlock,cssMediaJoin skipwhite skipnl
 syn match cssMediaComma "," nextgroup=cssMediaType skipwhite skipnl
-syn region cssMediaBlock transparent matchgroup=cssBraces start='{' end='}' contains=cssTagName,cssError,cssComment,cssDefinition,cssURL,cssUnicodeEscape,cssIdentifier
+syn match cssMediaJoin "and" nextgroup=cssMediaComma,cssMediaBlock,cssMediaJoin,cssMediaSpecs skipwhite skipnl
+syn region cssMediaSpecs transparent matchgroup=cssParens start='(' end=')' contains=ALL nextgroup=cssMediaComma,cssMediaBlock skipwhite skipnl
+syn region cssMediaBlock transparent matchgroup=cssBraces start='{' end='}' contains=ALL skipwhite skipnl
+
+syn match cssParens contained "[()]"
 
 syn match cssValueInteger contained "[-+]\=\d\+"
 syn match cssValueNumber contained "[-+]\=\d\+\(\.\d*\)\="
@@ -123,6 +127,8 @@ syn keyword cssBoxAttr contained thin thick both
 syn keyword cssBoxAttr contained dotted dashed solid double groove ridge inset outset
 syn keyword cssBoxAttr contained hidden visible scroll collapse
 
+syn match cssDeviceProp contained "\<\(min\|max\)-\(device\)-\(width\|height\)\>"
+
 syn keyword cssGeneratedContentProp contained content quotes
 syn match cssGeneratedContentProp contained "\<counter-\(reset\|increment\)\>"
 syn match cssGeneratedContentProp contained "\<list-style\(-\(type\|position\|image\)\)\=\>"
@@ -194,7 +200,7 @@ syn match cssSpecialCharQQ +\\"+ contained
 syn match cssSpecialCharQ +\\'+ contained
 syn region cssStringQQ start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=cssUnicodeEscape,cssSpecialCharQQ
 syn region cssStringQ start=+'+ skip=+\\\\\|\\'+ end=+'+ contains=cssUnicodeEscape,cssSpecialCharQ
-syn match cssClassName "\.\S\+"
+syn match cssClassName "\.[A-Za-z][A-Za-z0-9_-]\+"
 
 if main_syntax == "css"
   syn sync minlines=10
@@ -219,6 +225,7 @@ if version >= 508 || !exists("did_css_syn_inits")
   HiLink cssColorProp StorageClass
   HiLink cssTextProp StorageClass
   HiLink cssBoxProp StorageClass
+  HiLink cssDeviceProp StorageClass
   HiLink cssRenderProp StorageClass
   HiLink cssAuralProp StorageClass
   HiLink cssRenderProp StorageClass
@@ -262,6 +269,8 @@ if version >= 508 || !exists("did_css_syn_inits")
   HiLink cssMedia Special
   HiLink cssMediaType Special
   HiLink cssMediaComma Normal
+  HiLink cssMediaJoin String
+  HiLink cssMediaSpecs String
   HiLink cssFontDescriptor Special
   HiLink cssFontDescriptorFunction Constant
   HiLink cssFontDescriptorProp StorageClass
