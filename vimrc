@@ -292,3 +292,8 @@ let twitvim_browser_cmd = 'open -a Google\ Chrome'
 let g:twitvim_enable_python=1
 
 map <LocalLeader>tf :FriendsTwitter<cr>
+
+" Perl, Python and shell scripts
+autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap u :-1/^#/s///<CR>
+autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap c :-1/^/s//#/<CR>
+ 
