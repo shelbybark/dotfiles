@@ -76,7 +76,7 @@ autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab|set sof
 
 " File Types *****************************************************************
 
-autocmd FileType html set filetype=html.django_template " For SnipMate
+autocmd FileType html set filetype=htmldjango.html.django_template " For SnipMate
 autocmd FileType python set filetype=python.django " For SnipMate
 
 
@@ -293,7 +293,9 @@ let g:twitvim_enable_python=1
 
 map <LocalLeader>tf :FriendsTwitter<cr>
 
-" Perl, Python and shell scripts
+" Perl, Python, shell scripts and javascript visual mode commenting 
 autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap u :-1/^#/s///<CR>
 autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap c :-1/^/s//#/<CR>
  
+autocmd BufNewFile,BufRead *.js vmap u :-1/^\/\//s///<CR>
+autocmd BufNewFile,BufRead *.js vmap c :-1/^/s//\/\//<CR>
