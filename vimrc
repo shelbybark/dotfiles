@@ -62,6 +62,7 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 if has("gui_running")
 		set listchars=tab:▸\ ,eol:¬
+        highlight SpellBad term=underline gui=undercurl guisp=Orange 
 endif
 
 
@@ -82,6 +83,7 @@ autocmd FileType python set filetype=python.django " For SnipMate
 
 autocmd BufRead,BufNewFile jquery.*.js *.js set filetype=javascript syntax=jquery
 
+filetype on
 filetype plugin on
 
 
