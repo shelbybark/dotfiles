@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/shelbybark/mgit/epbfi.com/epbfi'
-let g:netrw_dirhist_2='/Users/shelbybark/mgit/yanmar.com/yanmar'
-let g:netrw_dirhist_3='/Users/shelbybark/mgit/playandpark.com/playcore'
+let g:netrw_dirhist_2='/Users/shelbybark/mgit/mypicturerx.com/picturerx'
+let g:netrw_dirhist_3='/Users/shelbybark/mgit/lulalake.org/lulalake'
+let g:netrw_dirhist_4='/Users/shelbybark/mgit/mypicturerx.com/picturerx'
+let g:netrw_dirhist_5='/Users/shelbybark/mgit/epbfi.com/epbfi'
+let g:netrw_dirhist_6='/Users/shelbybark/mgit/mypicturerx.com/picturerx'

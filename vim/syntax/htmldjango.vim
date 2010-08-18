@@ -32,3 +32,4 @@ syn region djangoComment start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}" co
 syn region djangoComBlock start="{#" end="#}" contains=djangoTodo containedin=ALLBUT,@djangoBlocks
 
 let b:current_syntax = "htmldjango"
+

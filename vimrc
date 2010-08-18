@@ -42,6 +42,8 @@ set linebreak
 set ignorecase
 set smartcase
 
+
+
 " Allow cursor to move anywhere.
 set virtualedit=all
 
@@ -63,6 +65,9 @@ nmap <leader>l :set list!<CR>
 if has("gui_running")
 		set listchars=tab:▸\ ,eol:¬
         highlight SpellBad term=underline gui=undercurl guisp=Orange 
+        " Ready for new persistent undos
+        set undofile
+        set undodir=~/.undo
 endif
 
 
