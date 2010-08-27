@@ -51,6 +51,7 @@ if has('mouse')
   set mouse=a
 endif
 
+let mapleader = ","
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -301,8 +302,27 @@ let g:twitvim_enable_python=1
 map <LocalLeader>tf :FriendsTwitter<cr>
 
 " Perl, Python, shell scripts and javascript visual mode commenting 
-autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap u :-1/^#/s///<CR>
-autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap c :-1/^/s//#/<CR>
+"autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap u :-1/^#/s///<CR>
+"autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap c :-1/^/s//#/<CR>
  
-autocmd BufNewFile,BufRead *.js vmap u :-1/^\/\//s///<CR>
-autocmd BufNewFile,BufRead *.js vmap c :-1/^/s//\/\//<CR>
+"autocmd BufNewFile,BufRead *.js vmap u :-1/^\/\//s///<CR>
+"autocmd BufNewFile,BufRead *.js vmap c :-1/^/s//\/\//<CR>
+
+"let g:xml_syntax_folding=1
+"au FileType xml setlocal foldmethod=syntax
+
+function! s:Terminal()
+  execute 'ConqueTermSplit bash --login'
+endfunction
+command! Terminal call s:Terminal()
+
+let g:ConqueTerm_Color = 0
+let g:ConqueTerm_TERM = 'vt100'
+let g:ConqueTerm_ReadUnfocused = 0
+let g:ConqueTerm_CWInsert = 0
+
+let g:ConqueTerm_PromptRegex = '^\w\+@[0-9A-Za-z_.-]\+:[0-9A-Za-z_./\~,:-]\+\$'
+
+
+
+
