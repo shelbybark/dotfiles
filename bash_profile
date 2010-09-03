@@ -1,4 +1,4 @@
-export PATH=/opt/local/bin:/opt/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$PATH
+export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$PATH
 export TERM=xterm-color
 alias ls='ls -G'
 alias ll='ls -hl'

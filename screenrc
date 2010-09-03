@@ -1,13 +1,37 @@
 shell -$BASH
-# caption always "%n(%t) : %C"
-defscrollback 1024
+#caption always "%n(%t) : %C"
+defscrollback 5024
 startup_message off
+
+attrcolor b ".I"
+termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
+termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 
 term screen-256color
 
 
+backtick 52 0 10 tail /tmp/temperature
+
 hardstatus on
 hardstatus alwayslastline
+hardstatus string '%{= kG}%{C}Screen: %{c}%{= kG}[%{= kC}%-Lw%{= ck}%50> %n*%f %t %{= kC}%+Lw%< %{= kC}%-=][%{B} %H %{c}%l %{g}][%{C} %D %m/%d/%y %{W}%C:%s %A %{g}] [%{W} %52` %{g}]'
+
+caption always "%{cG}"
+# test
+ #hardstatus alwayslastline "%{dw} \\\\ %{dB}%50`%{dw} \\---\\\\ %{dB}%-w%-u%50>%{Kw}%n-%t%{dB}%+u%+w%<%> %{dB}\\%=%{dw}\\\\%{dB} Time:%{dw}%C %{dB}%D%{dw} \\" 
+sorendition = "kG"
+
+screen -t MVM 0 bash # sudo mvm start
+screen -t cx 1 ssh-coptix-tunnels
+screen -t herod 2 ssh herod.hosts.coptix.com
+screen -t local-shell 3 bash
+screen -t MVM-SHELL 4 bash
+screen -t iago-shell 5 bash
+#screen -t local-vim 5 vim
+select 3
+
+
+
 # hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
 
 # caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
@@ -24,10 +48,4 @@ hardstatus alwayslastline
 
 
 # Nice
-# hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'
-
-
-
-# Fav
-hardstatus string '%{= kG}%{C}Screen: %{c}%{= kG}[%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %H %{W}%l %{g}][%{C} %d/%m/%Y %{W}%C:%s %A %{g}]'
-
+#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n*%f %t%{= kG}%+Lw%< %{= kG}%-=%D %m/%d/%y | %C:%s %A | %1`%{-}'

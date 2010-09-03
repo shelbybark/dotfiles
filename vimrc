@@ -159,16 +159,14 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
-" Turn off menu bar in MacVim
-set guioptions-=T
-set guifont=Menlo:h12
-
 
 " Non-gui
 if !has("gui_running")
 		""colo ir_black
 		colo molokai
 endif
+
+set laststatus=2
 
 " Set status bar the way we like it
 " cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
@@ -188,6 +186,8 @@ endif
 "   %P percentage through buffer
 "   %) end of width specification
 set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+
+
 
 " zencoding settings
 let g:user_zen_expandabbr_key = '<c-e>'
