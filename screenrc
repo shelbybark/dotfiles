@@ -27,6 +27,7 @@ screen -t herod 2 ssh herod.hosts.coptix.com
 screen -t local-shell 3 bash
 screen -t MVM-SHELL 4 bash
 screen -t iago-shell 5 bash
+screen -t scratchy 6 bash
 #screen -t local-vim 5 vim
 select 3
 

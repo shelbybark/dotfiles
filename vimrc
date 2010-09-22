@@ -10,6 +10,9 @@ syntax on
 " set auto-indenting on for programming
 set ai
 
+" copy previous indentation on autoindent
+set copyindent
+
 " turn off compatibility with the old vi
 set nocompatible
 
@@ -294,6 +297,13 @@ if !exists("myautocmds")
 endif
 
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
+
+" copy current line, paste after this line, replace all characters with '='
+nnoremap <leader>1 yypVr=
+
+nnoremap <tab> %
+vnoremap <tab> %
+
 
 " TwitVim settings
 let twitvim_browser_cmd = 'open -a Google\ Chrome'

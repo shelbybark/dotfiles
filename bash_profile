@@ -2,6 +2,7 @@ export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/b
 export TERM=xterm-color
 alias ls='ls -G'
 alias ll='ls -hl'
+alias lls='ll -S'
 alias mate='~/bin/mate'
 alias mater='~/bin/mate .'
 alias vimr='mvim .'
