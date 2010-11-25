@@ -34,7 +34,6 @@ set backspace=indent,eol,start
 
 set number
 
-set incsearch
 
 set scrolloff=5
 
@@ -42,10 +41,27 @@ set cpoptions+=$
 
 set linebreak
 
+let mapleader = ","
+
+nnoremap / /\v
+vnoremap / /\v
 set ignorecase
 set smartcase
+set gdefault
+set incsearch
+nnoremap <tab> %
+vnoremap <tab> %
 
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+"set colorcolumn=85
 
+" Split current file and move cursor to new split
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Search and remove extra line spaces
+nnoremap <leader>s :%s/^\n\+/\r/<CR> 
 
 " Allow cursor to move anywhere.
 set virtualedit=all
@@ -54,7 +70,9 @@ if has('mouse')
   set mouse=a
 endif
 
-let mapleader = ","
+" Abbreviations
+ab teh the
+ab pymain if __name__ == "__main__":
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -301,8 +319,6 @@ map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 " copy current line, paste after this line, replace all characters with '='
 nnoremap <leader>1 yypVr=
 
-nnoremap <tab> %
-vnoremap <tab> %
 
 
 " TwitVim settings
@@ -334,5 +350,14 @@ let g:ConqueTerm_CWInsert = 0
 let g:ConqueTerm_PromptRegex = '^\w\+@[0-9A-Za-z_.-]\+:[0-9A-Za-z_./\~,:-]\+\$'
 
 
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 
