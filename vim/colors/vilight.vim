@@ -9,7 +9,7 @@ endif
 
 let g:colors_name="vilight"
 
-hi Normal         guifg=#F8F8F8           guibg=#141414
+hi Normal         guifg=#dedee1           guibg=#141414
 hi Cursor                                 guibg=#ffba0a
 hi CursorLine	            			  guibg=#282828
 hi Directory      guifg=#8F9D6A           guibg=#141414
@@ -23,16 +23,19 @@ hi LineNr         guifg=#665f57           guibg=#282828
 hi ModeMsg        guifg=#f9ee98           guibg=#141414
 hi MoreMsg        guifg=#f9ee98           guibg=#141414
 hi NonText        guifg=#2e2e2e           guibg=#141414
-hi SpecialKey        guifg=#2e2e2e           guibg=#141414
+hi SpecialKey     guifg=#2e2e2e           guibg=#141414
 hi Search         guifg=#f8f8f8           guibg=#4f94cd     gui=underline
-hi StatusLine     guifg=#0e2231           guibg=#8693a5
+hi StatusLine     guifg=#2d5979           guibg=#add6ec
 hi StatusLineNC   guifg=#0e2231           guibg=#8693a5
 hi Visual         guifg=#4289a7           guibg=#b4e4fd     gui=none 
 hi WildMenu       guifg=#9b70f3           guibg=#0e2231
 hi MatchParen	  guifg=#f8f8f8		      guibg=#4f94cd
-hi ErrorMsg		  guifg=#cf6a4c           guibg=NONE
-hi WarningMsg	  guifg=#cf6a4c			  guibg=NONE
+"hi ErrorMsg		  guifg=#cf6a4c           guibg=NONE
+hi ErrorMsg		  guifg=#fce1d8           guibg=#cd3031
+"hi WarningMsg	  guifg=#cf6a4c			  guibg=NONE
+hi WarningMsg	  guifg=#433a06			  guibg=#f1d331
 hi Title		  guifg=#cf6a4c			  guibg=#141414
+hi ColorColumn    guifg=#9c7777           guibg=#120b0b
 
 "Syntax hilight groups
 

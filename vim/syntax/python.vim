@@ -123,6 +123,7 @@ syn match   djangoAttribute	"db.FloatProperty" display
 syn match   djangoAttribute	"db.GeoPtProperty" display 
 syn match   djangoAttribute	"db.IntegerProperty" display 
 syn match   djangoAttribute	"db.LinkProperty" display 
+syn match   djangoAttribute	"db.StringProperty" display 
 syn match   djangoAttribute	"db.ListProperty" display 
 syn match   djangoAttribute	"db.PhoneNumberProperty" display 
 syn match   djangoAttribute	"db.PostalAddressProperty" display 
