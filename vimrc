@@ -99,7 +99,7 @@ autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType javascript set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
 
 
 " File Types *****************************************************************

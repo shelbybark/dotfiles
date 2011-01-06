@@ -46,11 +46,11 @@ syn match   htmlTagError contained "[^>]<"ms=s+1
 " tag names
 syn keyword htmlTagName contained address applet area a base basefont
 syn keyword htmlTagName contained big blockquote br caption center
-syn keyword htmlTagName contained cite code dd dfn dir div dl dt font
+syn keyword htmlTagName contained cite code dd dfn dir div dl dt font header nav section footer
 syn keyword htmlTagName contained form hr html img
 syn keyword htmlTagName contained input isindex kbd li link map menu
 syn keyword htmlTagName contained meta ol option param pre p samp span
-syn keyword htmlTagName contained select small strike sub sup
+syn keyword htmlTagName contained select small strike sub sup datalist
 syn keyword htmlTagName contained table td textarea th tr tt ul var xmp
 syn match htmlTagName contained "\<\(b\|i\|u\|h[1-6]\|em\|strong\|head\|body\|title\)\>"
 

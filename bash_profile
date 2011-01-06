@@ -33,6 +33,12 @@ alias mshell="mvm shell"
 alias topm="top -o rsize"
 alias topc="top -o cpu"
 
+alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
+
+
+source $HOME/.dotfiles/bash_scripts/z.sh
+
+
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
   }

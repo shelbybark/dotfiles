@@ -23,7 +23,7 @@ syn keyword cssTagName abbr acronym address applet area article a b base
 syn keyword cssTagName basefont bdo big blockquote body br button
 syn keyword cssTagName caption center cite code col colgroup dd del
 syn keyword cssTagName dfn dir div dl dt em fieldset font footer form frame
-syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head header hr html img i
+syn keyword cssTagName frameset h1 h2 h3 h4 h5 h6 head header hr html img i section
 syn keyword cssTagName iframe img input ins isindex kbd label legend li
 syn keyword cssTagName link map menu meta nav noframes noscript ol optgroup
 syn keyword cssTagName option p param pre q s samp script select small
@@ -118,16 +118,18 @@ syn match cssTextAttr contained "\<\(text-\)\=\(top\|bottom\)\>"
 syn keyword cssTextAttr contained underline overline blink sub super middle
 syn keyword cssTextAttr contained capitalize uppercase lowercase center justify baseline sub super
 
-syn match cssBoxProp contained "\<\(margin\|padding\|border\)\(-\(top\|right\|bottom\|left\)\)\=\>"
+syn match cssBoxProp contained "\<\(margin\|padding\|border\)\(-\(top\|right\|radius\|bottom\|left\)\)\=\>"
 syn match cssBoxProp contained "\<border-\(\(\(top\|right\|bottom\|left\)-\)\=\(width\|color\|style\)\)\=\>"
-syn match cssBoxProp contained "\<\(width\|z-index\)\>"
+syn match cssBoxProp contained "\<\(width\|box-shadow\|z-index\)\>"
 syn match cssBoxProp contained "\<\(min\|max\)-\(width\|height\)\>"
-syn keyword cssBoxProp contained width height float clear overflow clip visibility
+syn keyword cssBoxProp contained width height float clear overflow clip visibility opacity
 syn keyword cssBoxAttr contained thin thick both
 syn keyword cssBoxAttr contained dotted dashed solid double groove ridge inset outset
 syn keyword cssBoxAttr contained hidden visible scroll collapse
 
 syn match cssDeviceProp contained "\<\(min\|max\)-\(device\)-\(width\|height\)\>"
+
+syn match cssBrowserHack contained "\<\(-moz-\|-webkit-\)\>"
 
 syn keyword cssGeneratedContentProp contained content quotes
 syn match cssGeneratedContentProp contained "\<counter-\(reset\|increment\)\>"
@@ -225,6 +227,7 @@ if version >= 508 || !exists("did_css_syn_inits")
   HiLink cssColorProp StorageClass
   HiLink cssTextProp StorageClass
   HiLink cssBoxProp StorageClass
+  HiLink cssBrowserHack StorageClass
   HiLink cssDeviceProp StorageClass
   HiLink cssRenderProp StorageClass
   HiLink cssAuralProp StorageClass
