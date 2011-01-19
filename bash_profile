@@ -25,6 +25,7 @@ alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
 alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
 alias openr='open .'
 alias screenr='screen -r'
+alias tmuxr='tmux attach'
 alias cx="ssh-coptix-tunnels"
 alias herod-ssh="ssh herod.hosts.coptix.com"
 alias rove-ssh="ssh rove.hosts.coptix.com"

@@ -27,6 +27,9 @@
 [color "diff"]
     whitespace = red reverse
     
+[alias]
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = /Users/shelbybark/.gitignore
