@@ -83,7 +83,7 @@ nmap <leader>l :set list!<CR>
 "inoremap kj <Esc>
 
 " folding toggle
-:nnoremap <space> za
+":nnoremap <space> za
 
 " 'space' runs macro 'q'
 :noremap <Space> @q
