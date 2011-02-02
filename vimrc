@@ -41,6 +41,8 @@ set cpoptions+=$
 
 set linebreak
 
+set showbreak=...
+
 let mapleader = ","
 
 nnoremap / /\v
@@ -82,10 +84,13 @@ nmap <leader>l :set list!<CR>
 
 " folding toggle
 :nnoremap <space> za
+
+" 'space' runs macro 'q'
+:noremap <Space> @q
  
 " Use the same symbols as TextMate for tabstops and EOLs
 if has("gui_running")
-		set listchars=tab:▸\ ,eol:¬
+		set listchars=tab:▸\ ,eol:¬,trail:·
         highlight SpellBad term=underline gui=undercurl guisp=Orange 
         " Ready for new persistent undos
         set undofile
@@ -206,8 +211,45 @@ set laststatus=2
 "   %V current virtual column number (-n), if different from %c
 "   %P percentage through buffer
 "   %) end of width specification
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(\[%{GitBranchInfoTokens()[0]}\]\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranchInfoString()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranch()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
+"Git branch
+function! GitBranch()
+    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    if branch != ''
+        return 'git: ' . substitute(branch, '\n', '', 'g') . ' |'
+    en
+    return ''
+endfunction
+
+
+" git branch settings
+"
+let g:git_branch_status_head_current=1
+" This will show just the current head branch name 
+" 
+let g:git_branch_status_text="git"
+" This will show 'text' before the branches. If not set ' Git ' (with a trailing
+" left space") will be displayed.
+"
+"let g:git_branch_status_nogit="Not a Git repo"
+" The message when there is no Git repository on the current dir
+"
+" let g:git_branch_status_around=""
+" Characters to put around the branch strings. Need to be a pair or characters,
+" the first will be on the beginning of the branch string and the last on the
+" end.
+" 
+let g:git_branch_status_ignore_remotes=1
+" Ignore the remote branches. If you don't want information about them, this can
+" make things works faster.
+"
+" let g:git_branch_check_write=<something>
+" Check the current branch if it's the same branch where the file was loaded, 
+" before saving the file.
+"
 
 
 " zencoding settings

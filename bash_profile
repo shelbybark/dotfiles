@@ -42,7 +42,7 @@ source $HOME/.dotfiles/bash_scripts/z.sh
 
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-  }
+}
 #  PS1="\w\$(parse_git_branch) $ " 
 
 
@@ -51,8 +51,10 @@ then
         if [ `/usr/bin/whoami` = 'root' ]
         then
                 export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(parse_git_branch) \$ \[\033[00m\]'
+                #export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(vcprompt) \$ \[\033[00m\]'
         else
                 export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
+                #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
         fi
 fi
 
