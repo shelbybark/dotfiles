@@ -23,6 +23,7 @@ alias apacher='sudo apachectl graceful'
 alias mysql='/usr/local/mysql/bin/mysql'
 alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
 alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
+alias webby='python -m SimpleHTTPServer'
 alias openr='open .'
 alias screenr='screen -r'
 alias tmuxr='tmux attach'
@@ -36,8 +37,24 @@ alias topc="top -o cpu"
 
 alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
 
-
 source $HOME/.dotfiles/bash_scripts/z.sh
+
+
+platform='unknown'
+unamestr=`uname`
+if [[ "$unamestr" == 'Linux' ]]; then
+   platform='linux'
+elif [[ "$unamestr" == 'Darwin' ]]; then
+  platform='osx'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+  platform='freebsd'
+fi
+
+if [[ $platform == 'osx' ]]; then
+    # fix snow leopard's inclusion of resource fork files in tar
+    export COPYFILE_DISABLE=true
+fi
+
 
 
 parse_git_branch() {
