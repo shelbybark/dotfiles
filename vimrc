@@ -132,10 +132,11 @@ set cursorline
 "colorscheme xoria256
 " colorscheme sunburst
 "colorscheme wombat256_alt
-colorscheme vilight
 "colorscheme slate
 "colorscheme django
 "colo wombat
+"colorscheme vilight
+colorscheme underwater
 set t_Co=256 " 256 colors
 set background=dark
 
@@ -402,5 +403,17 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+
+
+" TODO
+au BufNewFile,BufRead *.todo setf todo
+
+" set up some mappings for todo list
+map <F5> o____: 
+map! <F5> ____: 
+map <F6> <esc>0:s/____/DONE/g<cr>
+map! <F6> <esc>mz_:s/____/DONE/g<cr>`za
+
 
 

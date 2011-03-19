@@ -1,10 +1,10 @@
-export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$PATH
+export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:$PATH
 export TERM=xterm-color
 alias ls='ls -G'
 alias ll='ls -hl'
 alias lls='ll -S'
-alias mate='~/bin/mate'
-alias mater='~/bin/mate .'
+#alias mate='~/bin/mate'
+#alias mater='~/bin/mate .'
 alias vimr='mvim .'
 alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
 alias n='git status'
@@ -19,6 +19,7 @@ alias gco='git checkout'
 alias gc='git commit -v'
 alias gcm='git commit -vm'
 alias fd='fab production deploy'
+alias fds='fab production static_deploy'
 alias apacher='sudo apachectl graceful'
 alias mysql='/usr/local/mysql/bin/mysql'
 alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
@@ -27,11 +28,9 @@ alias webby='python -m SimpleHTTPServer'
 alias openr='open .'
 alias screenr='screen -r'
 alias tmuxr='tmux attach'
-alias cx="ssh-coptix-tunnels"
-alias herod-ssh="ssh herod.hosts.coptix.com"
-alias rove-ssh="ssh rove.hosts.coptix.com"
 alias screenm="screen -S MVM -t MVM"
 alias mshell="mvm shell"
+alias sbshell="ssh shelbybark@localhost -A -p 2222"
 alias topm="top -o rsize"
 alias topc="top -o cpu"
 
@@ -70,8 +69,14 @@ then
                 export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(parse_git_branch) \$ \[\033[00m\]'
                 #export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(vcprompt) \$ \[\033[00m\]'
         else
+            if [[ $platform == 'osx' ]]; then
                 export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
+            fi
+            if [[ $platform == 'linux' ]]; then
+                export PS1='\[\033[01;32m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
+                #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
+            fi
         fi
 fi
 

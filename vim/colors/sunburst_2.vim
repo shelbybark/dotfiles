@@ -10,7 +10,7 @@ endif
 
 let g:colors_name = "Sunburst copy"
 
-hi Cursor  guifg=NONE guibg=#a7a7a7 gui=NONE
+hi Cursor  guifg=NONE guibg=#dcba2c gui=NONE
 "hi Visual  guifg=NONE guibg=#3151f1 gui=NONE
 hi Visual  guifg=#4289a7  guibg=#b4e4fd     gui=none 
 hi CursorLine  guifg=NONE guibg=#1d2653 gui=NONE
@@ -22,7 +22,7 @@ hi MatchParen  guifg=#e18862 guibg=NONE gui=NONE
 "hi StatusLine  guifg=#e5e5e5 guibg=#3e3e3e gui=bold
 "hi StatusLineNC  guifg=#e5e5e5 guibg=#3e3e3e gui=NONE
 hi StatusLine     guifg=#4d6c60  guibg=#a7cdbc
-hi StatusLineNC   guifg=#4d6c60  guibg=#a7cdbc
+hi StatusLineNC   guifg=#263831  guibg=#4d6c60  
 hi Pmenu  guifg=#89bdff guibg=NONE gui=NONE
 hi PmenuSel  guifg=NONE guibg=#3151f1 gui=NONE
 hi IncSearch  guifg=NONE guibg=#264163 gui=NONE
@@ -33,7 +33,8 @@ hi Folded  guifg=#adadad guibg=#171717 gui=NONE
 hi Normal  guifg=#e5e5e5 guibg=#171717 gui=NONE
 hi Boolean  guifg=#40a8ff guibg=NONE gui=NONE
 hi Character  guifg=#40a8ff guibg=NONE gui=NONE
-hi Comment  guifg=#adadad guibg=NONE gui=italic
+"hi Comment  guifg=#adadad guibg=NONE gui=italic
+hi Comment  guifg=#828282 guibg=NONE gui=italic
 hi Conditional  guifg=#e18862 guibg=NONE gui=NONE
 hi Constant  guifg=#40a8ff guibg=NONE gui=NONE
 hi Define  guifg=#e18862 guibg=NONE gui=NONE
