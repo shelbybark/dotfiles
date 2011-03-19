@@ -1,44 +1,3 @@
-export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:$PATH
-export TERM=xterm-color
-alias ls='ls -G'
-alias ll='ls -hl'
-alias lls='ll -S'
-#alias mate='~/bin/mate'
-#alias mater='~/bin/mate .'
-alias vimr='mvim .'
-alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
-alias n='git status'
-alias gd='git diff'
-alias ga='git add'
-alias gaa='git add .'
-alias gp='git push'
-alias gst='git status'
-alias gb='git branch'
-alias gba='git branch -a'
-alias gco='git checkout'
-alias gc='git commit -v'
-alias gcm='git commit -vm'
-alias fd='fab production deploy'
-alias fds='fab production static_deploy'
-alias apacher='sudo apachectl graceful'
-alias mysql='/usr/local/mysql/bin/mysql'
-alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
-alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
-alias webby='python -m SimpleHTTPServer'
-alias openr='open .'
-alias screenr='screen -r'
-alias tmuxr='tmux attach'
-alias screenm="screen -S MVM -t MVM"
-alias mshell="mvm shell"
-alias sbshell="ssh shelbybark@localhost -A -p 2222"
-alias topm="top -o rsize"
-alias topc="top -o cpu"
-
-alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
-
-source $HOME/.dotfiles/bash_scripts/z.sh
-
-
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
@@ -52,7 +11,51 @@ fi
 if [[ $platform == 'osx' ]]; then
     # fix snow leopard's inclusion of resource fork files in tar
     export COPYFILE_DISABLE=true
+    export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:$PATH
+    alias ls='ls -G'
+    alias mate='~/bin/mate'
+    alias mater='~/bin/mate .'
+    alias vimr='mvim .'
+    alias fd='fab production deploy'
+    alias fds='fab production static_deploy'
+    alias apacher='sudo apachectl graceful'
+    alias mysql='/usr/local/mysql/bin/mysql'
+    alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
+    alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
+    alias webby='python -m SimpleHTTPServer'
+    alias openr='open .'
+    alias screenr='screen -r'
+    alias tmuxr='tmux attach'
+    alias screenm="screen -S MVM -t MVM"
+    alias mshell="mvm shell"
+    alias sbshell="ssh shelbybark@localhost -A -p 2222"
 fi
+if [[ $platform == 'linux' ]]; then
+    alias ls='ls --color'
+fi
+
+export TERM=xterm-color
+alias ll='ls -hl'
+alias lls='ll -S'
+alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
+alias n='git status'
+alias gd='git diff'
+alias ga='git add'
+alias gaa='git add .'
+alias gp='git push'
+alias gst='git status'
+alias gb='git branch'
+alias gba='git branch -a'
+alias gco='git checkout'
+alias gc='git commit -v'
+alias gcm='git commit -vm'
+alias topm="top -o rsize"
+alias topc="top -o cpu"
+
+alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
+
+source $HOME/.dotfiles/bash_scripts/z.sh
+
 
 
 
