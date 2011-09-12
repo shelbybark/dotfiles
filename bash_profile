@@ -11,7 +11,10 @@ fi
 if [[ $platform == 'osx' ]]; then
     # fix snow leopard's inclusion of resource fork files in tar
     export COPYFILE_DISABLE=true
-    export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:$PATH
+    export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:$PATH
+    #export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:$PATH
+    export ARCHFLAGS='-arch i386 -arch x86_64'
+    export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
     alias ls='ls -G'
     alias mate='~/bin/mate'
     alias mater='~/bin/mate .'
@@ -25,18 +28,24 @@ if [[ $platform == 'osx' ]]; then
     alias webby='python -m SimpleHTTPServer'
     alias openr='open .'
     alias screenr='screen -r'
+    alias tmux='tmux -2'
     alias tmuxr='tmux attach'
     alias screenm="screen -S MVM -t MVM"
     alias mshell="mvm shell"
     alias sbshell="ssh shelbybark@localhost -A -p 2222"
+    alias ssh-royalfine="ssh -p 2222 royal@royalfinecleaners.com"
+    alias ssh-bniweb="ssh steven@12.48.41.5"
+    alias ssh-bniweb04="ssh steven@204.15.50.51"
 fi
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color'
 fi
 
-export TERM=xterm-color
+#export TERM=xterm-color
+export TERM=xterm-256color
 alias ll='ls -hl'
 alias lls='ll -S'
+alias lla='ll -a'
 alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
 alias n='git status'
 alias gd='git diff'
@@ -49,6 +58,8 @@ alias gba='git branch -a'
 alias gco='git checkout'
 alias gc='git commit -v'
 alias gcm='git commit -vm'
+alias svnpull='git stash && git svn rebase && git stash apply'
+alias svnpush='git stash && git svn dcommit && git stash apply'
 alias topm="top -o rsize"
 alias topc="top -o cpu"
 
@@ -146,7 +157,8 @@ export WORKON_HOME=$HOME/code/ve
 
 # source $HOME/Documents/customscripts/virtualenvwrapper_bashrc
 # source /usr/local/bin/virtualenvwrapper_bashrc
-source $HOME/.dotfiles/virtualenvwrapper_bashrc
+#source $HOME/.dotfiles/virtualenvwrapper_bashrc
+source $HOME/.dotfiles/virtualenvwrapper-2.7.1/virtualenvwrapper.sh
 
 
 # source ~/.git-completion.sh

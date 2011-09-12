@@ -1,7 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/Users/shelbybark/mgit/chattanoogatechnologycouncil.org/chatc'
 let g:netrw_dirhist_2='/Users/shelbybark/Documents/pac'
 let g:netrw_dirhist_3='/Users/shelbybark/django-code/epb_enroll_v2'
 let g:netrw_dirhist_4='/Users/shelbybark/Desktop/compass_test/tester'
 let g:netrw_dirhist_5='/Users/shelbybark/sbvm'
+let g:netrw_dirhist_6='/Users/shelbybark/Desktop/sample_code'
+let g:netrw_dirhist_7='/Users/shelbybark/Documents/a shelbybark work/pouchee/shopify templates'
+let g:netrw_dirhist_8='/Users/shelbybark/django-code/boone/wp-cassopolis/live-themes/bni-design-5'
+let g:netrw_dirhist_9='/Users/shelbybark/Desktop/bni_sites/ga_output'

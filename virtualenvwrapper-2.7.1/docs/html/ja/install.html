@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>インストール &mdash; virtualenvwrapper v2.7 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '2.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="virtualenvwrapper v2.7 documentation" href="index.html" />
+    <link rel="next" title="コマンドリファレンス" href="command_ref.html" />
+    <link rel="prev" title="virtualenvwrapper 2.7" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="command_ref.html" title="コマンドリファレンス"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="index.html" title="virtualenvwrapper 2.7"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">virtualenvwrapper v2.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1>インストール<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="supported-shells">
+<span id="id2"></span><h2>サポートシェル<a class="headerlink" href="#supported-shells" title="Permalink to this headline">¶</a></h2>
+<p>virtualenvwrapper は Bourne シェル互換の構文で定義されたシェル <em>関数</em> のセットです。それは <cite>bash</cite>, <cite>ksh</cite> と <cite>zsh</cite> でテストされています。その他のシェルでも動作するかもしれませんが、ここに記載されていないシェルで動作することを発見したら私に教えてください。もしあなたがその他のシェルで動作させるために virtualenvwrapper を完全に書き直すことなく修正できるなら、bitbucket のプロジェクトページを通じて pull リクエストを送ってください。あなたが非互換なシェル上で動作させるクローンを作成するなら、このページでリンクを張るので私に連絡してください。</p>
+</div>
+<div class="section" id="python">
+<span id="supported-versions"></span><h2>Python バージョン<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h2>
+<p>virtualenvwrapper は Python 2.4 - 2.7 でテストされています。</p>
+</div>
+<div class="section" id="id3">
+<h2>基本的なインストール<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>virtualenvwrapper は <a class="reference external" href="http://pypi.python.org/pypi/pip">pip</a> でインストールすべきです。</p>
+<div class="highlight-python"><pre>$ pip install virtualenvwrapper</pre>
+</div>
+<p>virtualenv と同様にグローバルな Python site-packages にインストールしたくなるでしょう。そうするには管理者権限が必要になるかもしれません。</p>
+<p>グローバルな site-packages にインストールに対する代替案は、ユーザのローカルディレクトリ (普通は <cite>~/.local</cite>) に追加することです。</p>
+<div class="highlight-python"><pre>$ pip install --install-option="--user" virtualenvwrapper</pre>
+</div>
+</div>
+<div class="section" id="workon-home">
+<h2>WORKON_HOME<a class="headerlink" href="#workon-home" title="Permalink to this headline">¶</a></h2>
+<p>変数 <tt class="docutils literal"><span class="pre">WORKON_HOME</span></tt> は 仮想環境の作成場所を virtualenvwrapper に伝えます。デフォルトは <tt class="docutils literal"><span class="pre">$HOME/.virtualenvs</span></tt> です。このディレクトリは virtualenvwrapper のコマンドを使用する前に作成しなければなりません。</p>
+<span class="target" id="install-shell-config"></span></div>
+<div class="section" id="id4">
+<h2>シェルの起動ファイル<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>シェルの起動ファイル(<tt class="docutils literal"><span class="pre">.bashrc</span></tt>, <tt class="docutils literal"><span class="pre">.profile</span></tt> 等)に、仮想環境が構築される場所と virtualenvwrapper がインストールしたシェルスクリプトの場所の2行追加してください。</p>
+<div class="highlight-python"><pre>export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh</pre>
+</div>
+<p>編集後に起動ファイルを再読み込みしてください(例えば <tt class="docutils literal"><span class="pre">source</span> <span class="pre">~/.bashrc</span></tt> を実行する)。</p>
+</div>
+<div class="section" id="python-path">
+<h2>Python インタープリタと $PATH<a class="headerlink" href="#python-path" title="Permalink to this headline">¶</a></h2>
+<p>起動ファイルの読み込み時に <tt class="docutils literal"><span class="pre">virtualenvwrapper.sh</span></tt> は最初に <tt class="docutils literal"><span class="pre">$PATH</span></tt> 上の <tt class="docutils literal"><span class="pre">python</span></tt> を見つけて、後で使うために覚えておきます。これは virtualenvwrapper がインストールされていない仮想環境内部でインタープリタを有効にして <tt class="docutils literal"><span class="pre">$PATH</span></tt> 変更による競合が起こらないようにします。この動作の理由は <tt class="docutils literal"><span class="pre">virtualenvwrapper.sh</span></tt> を source する <strong>前に</strong> セットされた <tt class="docutils literal"><span class="pre">$PATH</span></tt> が重要だからです。</p>
+<div class="highlight-python"><pre>export PATH=/usr/local/bin:$PATH
+source /usr/local/bin/virtualenvwrapper.sh</pre>
+</div>
+<p><tt class="docutils literal"><span class="pre">$PATH</span></tt> 探索を上書きするには、使用するインタープリタのフルパスを(<tt class="docutils literal"><span class="pre">virtualenvwrapper.sh</span></tt> を source する <strong>前に</strong> )変数 <tt class="docutils literal"><span class="pre">VIRTUALENVWRAPPER_PYTHON</span></tt> にセットしてください。</p>
+<div class="highlight-python"><pre>export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+source /usr/local/bin/virtualenvwrapper.sh</pre>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>クイックスタート<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">workon</span></tt> を実行する</li>
+<li>仮想環境のリストが表示されるか、何も表示されない</li>
+<li><tt class="docutils literal"><span class="pre">mkvirtualenv</span> <span class="pre">temp</span></tt> を実行する</li>
+<li>新たな仮想環境 <tt class="docutils literal"><span class="pre">temp</span></tt> が作成されてアクティブ化される</li>
+<li><tt class="docutils literal"><span class="pre">workon</span></tt> を実行する</li>
+<li>このときに <tt class="docutils literal"><span class="pre">temp</span></tt> の仮想環境が提供される</li>
+</ol>
+</div>
+<div class="section" id="id6">
+<h2>一時ファイル<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>virtualenvwrapper は <tt class="docutils literal"><span class="pre">$TMPDIR</span></tt> に一時ファイルを作成します。その環境変数がセットされていない場合は <tt class="docutils literal"><span class="pre">/tmp</span></tt> を使用します。virtualenvwrapper 向けだけの一時ファイルの作成場所を変更するには <tt class="docutils literal"><span class="pre">VIRTUALENVWRAPPER_TMPDIR</span></tt> をセットしてください。</p>
+</div>
+<div class="section" id="x">
+<h2>1.x からのアップグレード<a class="headerlink" href="#x" title="Permalink to this headline">¶</a></h2>
+<p>ラッパー関数を含むシェルスクリプトは 2.x バージョンで bash 以外のシェルをサポートするためにその名前が変更されました。あなたの起動ファイルの <tt class="docutils literal"><span class="pre">source</span> <span class="pre">/usr/local/bin/virtualenvwrapper_bashrc</span></tt> を <tt class="docutils literal"><span class="pre">source</span> <span class="pre">/usr/local/bin/virtualenvwrapper.sh</span></tt> へ変更してください。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">インストール</a><ul>
+<li><a class="reference internal" href="#supported-shells">サポートシェル</a></li>
+<li><a class="reference internal" href="#python">Python バージョン</a></li>
+<li><a class="reference internal" href="#id3">基本的なインストール</a></li>
+<li><a class="reference internal" href="#workon-home">WORKON_HOME</a></li>
+<li><a class="reference internal" href="#id4">シェルの起動ファイル</a></li>
+<li><a class="reference internal" href="#python-path">Python インタープリタと $PATH</a></li>
+<li><a class="reference internal" href="#id5">クイックスタート</a></li>
+<li><a class="reference internal" href="#id6">一時ファイル</a></li>
+<li><a class="reference internal" href="#x">1.x からのアップグレード</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">virtualenvwrapper 2.7</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="command_ref.html"
+                        title="next chapter">コマンドリファレンス</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="command_ref.html" title="コマンドリファレンス"
+             >next</a></li>
+        <li class="right" >
+          <a href="index.html" title="virtualenvwrapper 2.7"
+             >previous</a> |</li>
+        <li><a href="index.html">virtualenvwrapper v2.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2011, Doug Hellmann.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>

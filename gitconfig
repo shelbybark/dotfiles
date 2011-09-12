@@ -29,11 +29,20 @@
     
 [alias]
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    st = status
+    co = checkout
+    com = checkout master
+    cam = commit -a -m
+    cm = commit -m
+    br = branch
 
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	excludesfile = /Users/shelbybark/.gitignore
-	editor = mvim --nofork
+	;editor = mvim --nofork
+	editor = vim
+	;autocrlf = input
+	;safecrlf = true
 [github]
 	user = shelbybark
 	token = 7d170b41a88fabbda90b9bba02a22938

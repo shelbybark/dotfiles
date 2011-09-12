@@ -60,6 +60,9 @@ set textwidth=79
 set formatoptions=qrn1
 "set colorcolumn=85
 
+" set swap file location
+set directory=$HOME/.vim_swp/
+
 " Split current file and move cursor to new split
 nnoremap <leader>w <C-w>v<C-w>l
 
@@ -104,6 +107,7 @@ endif
 autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
+autocmd FileType haml set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
 autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
 
@@ -215,7 +219,8 @@ set laststatus=2
 "   %) end of width specification
 "set statusline=%<\ %n:%f\ %m%r%y%=%-35.(\[%{GitBranchInfoTokens()[0]}\]\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 "set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranchInfoString()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranch()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranch()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
+set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
 
 "Git branch
 function! GitBranch()
