@@ -36,6 +36,7 @@ if [[ $platform == 'osx' ]]; then
     alias ssh-royalfine="ssh -p 2222 royal@royalfinecleaners.com"
     alias ssh-bniweb="ssh steven@12.48.41.5"
     alias ssh-bniweb04="ssh steven@204.15.50.51"
+    alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
 fi
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color'
@@ -242,4 +243,6 @@ if [ -z "$SCREEN_COLORS" ] ; then
     esac
     SCREEN_COLORS=`tput colors`
 fi
+
+complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
