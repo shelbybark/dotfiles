@@ -41,6 +41,9 @@ if [[ $platform == 'osx' ]]; then
 fi
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color'
+    export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$PATH
+    export TERM=xterm-color
+    alias ls='ls -G --color'
 fi
 
 #export TERM=xterm-color
@@ -65,6 +68,9 @@ alias svnpull='git stash && git svn rebase && git stash apply'
 alias svnpush='git stash && git svn dcommit && git stash apply'
 alias topm="top -o rsize"
 alias topc="top -o cpu"
+alias sb-runserver='./manage.py runserver 0.0.0.0:8000'
+
+alias sb-nginx="python manage.py runfcgi method=threaded host=127.0.0.1 port=8080 pidfile=project.pid minspare=4 maxspare=30 daemonize=false"
 
 alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
 
@@ -162,6 +168,7 @@ export WORKON_HOME=$HOME/code/ve
 # source /usr/local/bin/virtualenvwrapper_bashrc
 #source $HOME/.dotfiles/virtualenvwrapper_bashrc
 source $HOME/.dotfiles/virtualenvwrapper-2.7.1/virtualenvwrapper.sh
+
 
 
 # source ~/.git-completion.sh
