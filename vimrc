@@ -302,66 +302,66 @@ endfunction
 
 
 " Python customization {
-function LoadPythonGoodies()
+"function LoadPythonGoodies()
 
-	if &ft=="python"||&ft=="html"||&ft=="xhtml"
+	"if &ft=="python"||&ft=="html"||&ft=="xhtml"
 
-		" settings for django, for something unknow I need to call before python
-		" path set
-		call LoadDjangoGoodies()
+		"" settings for django, for something unknow I need to call before python
+		"" path set
+		"call LoadDjangoGoodies()
 
-		" set python path to vim
-    	python << EOF
-import os, sys, vim
+		"" set python path to vim
+        "python << EOF
+"import os, sys, vim
 
-for p in sys.path:
-    if os.path.isdir(p):
-		vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-EOF
+"for p in sys.path:
+    "if os.path.isdir(p):
+		"vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+"EOF
 
-		" some nice adjustaments to show errors
-    	syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display 
-		syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display 
-		syn match pythonError "^\s*for\s.*[^:]\s*$" display 
-		syn match pythonError "^\s*except\s*$" display 
-		syn match pythonError "^\s*finally\s*$" display 
-		syn match pythonError "^\s*try\s*$" display 
-		syn match pythonError "^\s*else\s*$" display 
-		syn match pythonError "^\s*else\s*[^:].*" display 
-		"syn match pythonError "^\s*if\s.*[^\:]$" display 
-		syn match pythonError "^\s*except\s.*[^\:]$" display 
-		syn match pythonError "[;]$" display 
-		syn keyword pythonError         do  
+		"" some nice adjustaments to show errors
+        "syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display 
+		"syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display 
+		"syn match pythonError "^\s*for\s.*[^:]\s*$" display 
+		"syn match pythonError "^\s*except\s*$" display 
+		"syn match pythonError "^\s*finally\s*$" display 
+		"syn match pythonError "^\s*try\s*$" display 
+		"syn match pythonError "^\s*else\s*$" display 
+		"syn match pythonError "^\s*else\s*[^:].*" display 
+		""syn match pythonError "^\s*if\s.*[^\:]$" display 
+		"syn match pythonError "^\s*except\s.*[^\:]$" display 
+		"syn match pythonError "[;]$" display 
+		"syn keyword pythonError         do  
 
-    	let python_highlight_builtins = 1
-    	let python_highlight_exceptions = 1
-    	let python_highlight_string_formatting = 1
-    	let python_highlight_string_format = 1
-    	let python_highlight_string_templates = 1
-    	let python_highlight_indent_errors = 1
-    	let python_highlight_space_errors = 1
-    	let python_highlight_doctests = 1
+        "let python_highlight_builtins = 1
+        "let python_highlight_exceptions = 1
+        "let python_highlight_string_formatting = 1
+        "let python_highlight_string_format = 1
+        "let python_highlight_string_templates = 1
+        "let python_highlight_indent_errors = 1
+        "let python_highlight_space_errors = 1
+        "let python_highlight_doctests = 1
 
-		" complain to PEP 8 (Style Guide for Python Code) : http://www.python.org/dev/peps/pep-0008/
-		set ai tw=79 ts=4 sts=4 sw=4 et
+		"" complain to PEP 8 (Style Guide for Python Code) : http://www.python.org/dev/peps/pep-0008/
+		"set ai tw=79 ts=4 sts=4 sw=4 et
 	
-	endif
+	"endif
 
-endfunction
+"endfunction
 
-if !exists("myautocmds")
-	let g:myautocmds=1
+"if !exists("myautocmds")
+	"let g:myautocmds=1
 
-	"call LoadPythonGoodies()
-	"autocmd Filetype python,html,xhtml call LoadPythonGoodies()
-	au BufNewFile,BufRead *.py,*.html call LoadPythonGoodies()
+	""call LoadPythonGoodies()
+	""autocmd Filetype python,html,xhtml call LoadPythonGoodies()
+	"au BufNewFile,BufRead *.py,*.html call LoadPythonGoodies()
 
-	" Omni completion
-	autocmd FileType python set omnifunc=pythoncomplete#Complete
-	autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-	autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-endif
+	"" Omni completion
+	"autocmd FileType python set omnifunc=pythoncomplete#Complete
+	"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+	"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+	"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+"endif
 
 map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
 

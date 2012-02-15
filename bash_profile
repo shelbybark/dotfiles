@@ -34,6 +34,7 @@ if [[ $platform == 'osx' ]]; then
     alias mshell="mvm shell"
     alias sbshell="ssh shelbybark@localhost -A -p 2222"
     alias ssh-royalfine="ssh -p 2222 royal@royalfinecleaners.com"
+    alias ssh-coltrane="ssh steven@204.15.50.55"
     alias ssh-bniweb="ssh steven@12.48.41.5"
     alias ssh-bniweb04="ssh steven@204.15.50.51"
     alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
@@ -59,6 +60,7 @@ alias gba='git branch -a'
 alias gco='git checkout'
 alias gc='git commit -v'
 alias gcm='git commit -vm'
+alias gitprettylog="git log --pretty=format:'%C(yellow)%h%Creset %s %Cblue%d%Creset' --graph --decorate=full --all"
 alias svnpull='git stash && git svn rebase && git stash apply'
 alias svnpush='git stash && git svn dcommit && git stash apply'
 alias topm="top -o rsize"
