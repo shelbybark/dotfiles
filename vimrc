@@ -32,6 +32,9 @@ set binary noeol
 " make that backspace key work the way it should
 set backspace=indent,eol,start
 
+" Set modeline for filetype setting in file
+set modeline
+
 set number
 
 set splitright
