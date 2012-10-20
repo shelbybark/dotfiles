@@ -26,7 +26,8 @@ hi ModeMsg        guifg=#f9ee98           guibg=#141414
 hi MoreMsg        guifg=#f9ee98           guibg=#141414
 hi NonText        guifg=#2e2e2e           guibg=#141414
 hi SpecialKey     guifg=#2e2e2e           guibg=#141414
-hi Search         guifg=#f8f8f8           guibg=#4f94cd     gui=underline
+"hi Search         guifg=#f8f8f8           guibg=#4f94cd     gui=underline
+hi Search         guifg=#f8f8f8           guibg=#a7611e     gui=underline
 hi StatusLine     guifg=#2d5979           guibg=#add6ec
 hi StatusLineNC   guifg=#0e2231           guibg=#1e3d55
 hi Visual         guifg=#4289a7           guibg=#b4e4fd     gui=none 

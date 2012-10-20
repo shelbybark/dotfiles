@@ -34,6 +34,7 @@ set backspace=indent,eol,start
 
 " Set modeline for filetype setting in file
 set modeline
+set modelines=1
 
 set number
 
@@ -92,6 +93,9 @@ nmap <leader>l :set list!<CR>
 " folding toggle
 ":nnoremap <space> za
 
+" Shift-tab for auto-complete
+inoremap <S-TAB> <C-X><C-O>
+
 " 'space' runs macro 'q'
 :noremap <Space> @q
  
@@ -111,13 +115,16 @@ autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType haml set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
+autocmd FileType sass set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
+"autocmd FileType sass set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
 autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
 
 
 " File Types *****************************************************************
 
-autocmd FileType html set filetype=htmldjango.html.django_template " For SnipMate
+"autocmd FileType html set filetype=htmldjango.html.django_template " For SnipMate
+autocmd FileType html set filetype=htmldjango.html " For SnipMate
 autocmd FileType python set filetype=python.django " For SnipMate
 
 
@@ -144,7 +151,7 @@ set cursorline
 "colo wombat
 "colorscheme vilight
 colorscheme underwater
-set t_Co=256 " 256 colors
+"set t_Co=256 " 256 colors
 set background=dark
 
 map <F2> :NERDTreeToggle<CR>
@@ -194,11 +201,18 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
+" Press F4 to toggle highlighting on/off, and show current value.
+:noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " Non-gui
 if !has("gui_running")
 		""colo ir_black
-		colo molokai
+		"colo molokai
+		colo solarized
+		" solarized options 
+		let g:solarized_termcolors = 256
+		let g:solarized_visibility = "high"
+		let g:solarized_contrast = "high"
 endif
 
 set laststatus=2
@@ -424,4 +438,6 @@ map <F6> <esc>0:s/____/DONE/g<cr>
 map! <F6> <esc>mz_:s/____/DONE/g<cr>`za
 
 
+" allows OS clipboard to be used in vim
+" set clipboard=unnamed
 

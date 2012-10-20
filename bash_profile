@@ -11,16 +11,17 @@ fi
 if [[ $platform == 'osx' ]]; then
     # fix snow leopard's inclusion of resource fork files in tar
     export COPYFILE_DISABLE=true
-    export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:$PATH
+    export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:usr/local/share/npm/bin:$PATH
     #export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:$PATH
     export ARCHFLAGS='-arch i386 -arch x86_64'
-    export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
+    #export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
     alias ls='ls -G'
     alias mate='~/bin/mate'
     alias mater='~/bin/mate .'
     alias vimr='mvim .'
     alias fd='fab production deploy'
     alias fds='fab production static_deploy'
+    alias cw='compass watch'
     alias apacher='sudo apachectl graceful'
     alias mysql='/usr/local/mysql/bin/mysql'
     alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
@@ -30,6 +31,7 @@ if [[ $platform == 'osx' ]]; then
     alias screenr='screen -r'
     alias tmux='tmux -2'
     alias tmuxr='tmux attach'
+    alias mutt='cd ~/Desktop && mutt'
     alias screenm="screen -S MVM -t MVM"
     alias mshell="mvm shell"
     alias sbshell="ssh shelbybark@localhost -A -p 2222"
@@ -47,7 +49,8 @@ if [[ $platform == 'linux' ]]; then
 fi
 
 #export TERM=xterm-color
-export TERM=xterm-256color
+#export TERM=xterm-256color
+export TERM=screen-256color
 alias ll='ls -hl'
 alias lls='ll -S'
 alias lla='ll -a'
@@ -56,6 +59,7 @@ alias n='git status'
 alias gd='git diff'
 alias ga='git add'
 alias gaa='git add .'
+alias gaau='git add -u'
 alias gp='git push'
 alias gst='git status'
 alias gb='git branch'
@@ -68,11 +72,15 @@ alias svnpull='git stash && git svn rebase && git stash apply'
 alias svnpush='git stash && git svn dcommit && git stash apply'
 alias topm="top -o rsize"
 alias topc="top -o cpu"
+
+alias whatismyip='curl ifconfig.me'
+
 alias sb-runserver='./manage.py runserver 0.0.0.0:8000'
 
 alias sb-nginx="python manage.py runfcgi method=threaded host=127.0.0.1 port=8080 pidfile=project.pid minspare=4 maxspare=30 daemonize=false"
 
 alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
+
 
 source $HOME/.dotfiles/bash_scripts/z.sh
 
@@ -89,15 +97,15 @@ if [ "$TERM" != 'dumb' ] && [ -n "$BASH" ] && [ -n "$PS1" ]
 then
         if [ `/usr/bin/whoami` = 'root' ]
         then
-                export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(parse_git_branch) \$ \[\033[00m\]'
+                export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(parse_git_branch)\$ \[\033[00m\]'
                 #export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(vcprompt) \$ \[\033[00m\]'
         else
             if [[ $platform == 'osx' ]]; then
-                export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
+                export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch)\[\033[01;36m\]\$ \[\033[00m\]'
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
             fi
             if [[ $platform == 'linux' ]]; then
-                export PS1='\[\033[01;32m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch) \[\033[01;36m\]\$ \[\033[00m\]'
+                export PS1='\[\033[01;32m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch)\[\033[01;36m\]\$ \[\033[00m\]'
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
             fi
         fi

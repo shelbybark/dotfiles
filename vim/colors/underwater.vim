@@ -41,7 +41,8 @@ hi Folded 		guifg=#68CEE8 guibg=#1A3951 gui=none
 hi FoldColumn   guifg=#1E415E guibg=#1A3951 gui=none
 hi Title		guifg=#dfeff6 guibg=NONE	gui=bold
  " Selected text color
-hi Visual		guifg=#dfeff6 guibg=#24557A gui=none
+"hi Visual		guifg=#dfeff6 guibg=#24557A gui=none
+hi Visual		guifg=#4289a7 guibg=#b4e4fd gui=none
 hi SpecialKey	guifg=#3e71a1 guibg=#102235 gui=none
 
 "
