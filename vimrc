@@ -1,443 +1,186 @@
-set softtabstop=4
-set shiftwidth=4
+filetype off                   " required!
 
-" set our tabs to four spaces
-set ts=4
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-" turn syntax highlighting on by default
-syntax on
 
-" set auto-indenting on for programming
-set ai
+ " let Vundle manage Vundle
+ " required! 
+Bundle 'gmarik/vundle'
 
-" copy previous indentation on autoindent
-set copyindent
+ " My Bundles here:
+ "
+ " original repos on github
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'Townk/vim-autoclose'
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "honza/snipmate-snippets"
+Bundle 'garbas/vim-snipmate'
+Bundle 'tpope/vim-surround'
+Bundle 'matthewtodd/vim-twilight'
+Bundle 'vim-scripts/twilight256.vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'shelbybark/vilight'
+Bundle 'vim-htmldjango_omnicomplete'
+Bundle 'django.vim'
+Bundle 'tomasr/molokai'
+ 
 
-" turn off compatibility with the old vi
-set nocompatible
 
-" turn on the "visual bell" - which is much quieter than the "audio blink"
-set vb
+filetype plugin indent on     " required!
 
-" do not highlight words when searching for them. it's distracting.
-set nohlsearch
+" *********************************************
+" *                 Settings                  *
+" *********************************************
 
-" automatically show matching brackets. works like it does in bbedit.
-set showmatch
 
-" do NOT put a carriage return at the end of the last line! if you are programming
-" for the web the default will cause http headers to be sent. that's bad.
-set binary noeol
+set encoding=utf-8
+syntax enable
+filetype plugin indent on         " load file type plugins + indentation
 
-" make that backspace key work the way it should
-set backspace=indent,eol,start
+"set showcmd                       " Display incomplete commands.
+set showmode                      " Display the mode you're in.
+set showmatch                     " Show matching brackets/parenthesis
 
-" Set modeline for filetype setting in file
-set modeline
-set modelines=1
+set nowrap                        " don't wrap lines
+set tabstop=2 shiftwidth=2        " a tab is two spaces (or set this to 4)
+set expandtab                     " use spaces, not tabs (optional)
+set backspace=indent,eol,start    " backspace through everything in insert mode"
+set autoindent                    " match indentation of previous line
+set pastetoggle=<F2>
 
-set number
+set incsearch                     " Find as you type search
+set hlsearch                      " Highlight search terms
+set ignorecase                    " Case-insensitive searching.
+set smartcase                     " But case-sensitive if expression contains a capital letter.
 
-set splitright
+set foldmethod=indent             "fold based on indent
+set foldnestmax=3                 "deepest fold is 3 levels
+set nofoldenable                  "dont fold by default
 
-set scrolloff=5
+set hidden                        " Handle multiple buffers better.
+set title                         " Set the terminal's title
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+"set wildmode=list:longest         " Complete files like a shell.
+"set wildmenu                      " Enhanced command line completion.
+set wildignore=*.o,*.obj,*~       "stuff to ignore when tab completing
+set novisualbell
+set noerrorbells
+set history=1000                  " Store lots of :cmdline history
 
-set cpoptions+=$
+set scrolloff=3
+set sidescrolloff=7
 
-set linebreak
+set mouse-=a
+set mousehide
+set ttymouse=xterm2
+set sidescroll=1
 
-set showbreak=...
+set nobackup                      " Don't make a backup before overwriting a file.
+set nowritebackup                 " And again.
+set directory=/tmp                " Keep swap files in one location
+set timeoutlen=500
 
+set laststatus=2                  " Show the status line all the time
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+
+set t_Co=256                      " Set terminal to 256 colors
+" Colorscheme
+set background=dark
+colorscheme molokai
+
+
+autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+" *********************************************
+" *                 Functions                 *
+" *********************************************
+
+" Ack current word in command mode
+function! AckGrep()
+  let command = "ack ".expand("<cword>")
+  cgetexpr system(command)
+  cw
+endfunction
+
+function! AckVisual()
+  normal gv"xy
+
+  let escape_chars = ['(', ')']
+  for char in escape_chars
+    let @x = escape(@x, char)
+  endfor
+
+  let command = "ack ".shellescape(@x)
+  cgetexpr system(command)
+  cw
+endfunction
+
+function! RenameFile()
+    let old_name = expand('%')
+    let new_name = input('New file name: ', expand('%'), 'file')
+    if new_name != '' && new_name != old_name
+        exec ':saveas ' . new_name
+        exec ':silent !rm ' . old_name
+        redraw!
+    endif
+endfunction
+
+" *********************************************
+" *               Key Bindings                *
+" *********************************************
 let mapleader = ","
 
-nnoremap / /\v
-vnoremap / /\v
-set ignorecase
-set smartcase
-set gdefault
-set incsearch
-nnoremap <tab> %
-vnoremap <tab> %
+" Clear last search highlighting
+nnoremap <Space> :noh<cr>
 
-set wrap
-set textwidth=79
-set formatoptions=qrn1
-"set colorcolumn=85
+" Easier navigation between split windows
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
 
-" set swap file location
-set directory=$HOME/.vim_swp/
+" Insert blank lines without going into insert mode
+nmap go o<esc>
+nmap gO O<esc>
 
-" Split current file and move cursor to new split
-nnoremap <leader>w <C-w>v<C-w>l
+" Shortcut for =>
+imap <C-l> <Space>=><Space>
 
-" Search and remove extra line spaces
-nnoremap <leader>s :%s/^\n\+/\r/<CR> 
+" indent/unindent visual mode selection with tab/shift+tab
+vmap <tab> >gv
+vmap <s-tab> <gv
 
-" Allow cursor to move anywhere.
-set virtualedit=all
+" F7 reformats the whole file and leaves you where you were (unlike gg)
+map <silent> <F7> mzgg=G'z :delmarks z<CR>:echo "Reformatted."<CR>
 
-if has('mouse')
-  set mouse=a
-endif
+" open files in directory of current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
+map <leader>e :edit %%
+map <leader>v :view %%
 
-" Abbreviations
-ab teh the
-ab pymain if __name__ == "__main__":
+" rename current file
+map <leader>n :call RenameFile()<cr>
 
-" Shortcut to rapidly toggle `set list`
-nmap <leader>l :set list!<CR>
+" AckGrep current word
+map <leader>a :call AckGrep()<CR>
+" AckVisual current selection
+vmap <leader>a :call AckVisual()<CR>
 
-" Set alt esc
-"inoremap kj <Esc>
-
-" folding toggle
-":nnoremap <space> za
-
-" Shift-tab for auto-complete
-inoremap <S-TAB> <C-X><C-O>
-
-" 'space' runs macro 'q'
-:noremap <Space> @q
- 
-" Use the same symbols as TextMate for tabstops and EOLs
-if has("gui_running")
-		set listchars=tab:▸\ ,eol:¬,trail:·
-        highlight SpellBad term=underline gui=undercurl guisp=Orange 
-        " Ready for new persistent undos
-        set undofile
-        set undodir=~/.undo
-endif
-
-
-
-
-autocmd FileType * set tabstop=4|set shiftwidth=4|set expandtab
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType html set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType haml set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
-autocmd FileType sass set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
-"autocmd FileType sass set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType css set tabstop=4|set shiftwidth=4|set expandtab|set softtabstop=4
-autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab|set softtabstop=2
-
-
-" File Types *****************************************************************
-
-"autocmd FileType html set filetype=htmldjango.html.django_template " For SnipMate
-autocmd FileType html set filetype=htmldjango.html " For SnipMate
-autocmd FileType python set filetype=python.django " For SnipMate
-
-
-autocmd BufRead,BufNewFile jquery.*.js *.js set filetype=javascript syntax=jquery
-
-filetype on
-filetype plugin on
-
-
-
-
-" Cursor highlights **************************************************************
-set cursorline
-"set cursorcolumn
-
-" Colors *************************************************************************
-""colorscheme ir_black
-"colorscheme inspiration874125
-"colorscheme xoria256
-" colorscheme sunburst
-"colorscheme wombat256_alt
-"colorscheme slate
-"colorscheme django
-"colo wombat
-"colorscheme vilight
-colorscheme underwater
-"set t_Co=256 " 256 colors
-set background=dark
-
+" File tree browser - backslash
 map <F2> :NERDTreeToggle<CR>
-
-map <F3> :%! tidy -q -i -ashtml % <CR>
-
-
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" File tree browser showing current file - pipe (shift-backslash)
+map \| :NERDTreeFind<CR>
 
 
-" For mac users (using the 'apple' key)
-map <D-S-]> gt
-map <D-S-[> gT
-map <D-1> 1gt
-map <D-2> 2gt
-map <D-3> 3gt
-map <D-4> 4gt
-map <D-5> 5gt
-map <D-6> 6gt
-map <D-7> 7gt
-map <D-8> 8gt
-map <D-9> 9gt
-map <D-0> :tablast<CR>
-
-vmap <D-j> gj
-vmap <D-k> gk
-"vmap <D-4> g$
-"map <D-6> g^
-"map <D-0> g^
-
-
-" http://stackoverflow.com/questions/2400264/is-it-possible-to-apply-vim-configurations-without-restarting/2400289#2400289
-"if has("autocmd")
-"  augroup myvimrchooks
-"	au!
-"	autocmd bufwritepost .vimrc source ~/.vimrc
-"  augroup END
-"endif
-
-" Mappings for a recovering TextMate user {{{1
-" Indentation {{{2
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
-
-" Press F4 to toggle highlighting on/off, and show current value.
-:noremap <F4> :set hlsearch! hlsearch?<CR>
-
-" Non-gui
-if !has("gui_running")
-		""colo ir_black
-		"colo molokai
-		colo solarized
-		" solarized options 
-		let g:solarized_termcolors = 256
-		let g:solarized_visibility = "high"
-		let g:solarized_contrast = "high"
+" *********************************************
+" *        Local Vimrc Customization          *
+" *********************************************
+if filereadable(expand('~/.vimrc.local'))
+  so ~/.vimrc.local
 endif
-
-set laststatus=2
-
-" Set status bar the way we like it
-" cf the default statusline: %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-" format markers:
-"   %< truncation point
-"   %n buffer number
-"   %f relative path to file
-"   %m modified flag [+] (modified), [-] (unmodifiable) or nothing
-"   %r readonly flag [RO]
-"   %y filetype [ruby]
-"   %= split point for left and right justification
-"   %-35. width specification
-"   %l current line number
-"   %L number of lines in buffer
-"   %c current column number
-"   %V current virtual column number (-n), if different from %c
-"   %P percentage through buffer
-"   %) end of width specification
-"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(\[%{GitBranchInfoTokens()[0]}\]\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranchInfoString()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-"set statusline=%<\ %n:%f\ %m%r%y%=%-35.(%{GitBranch()}\ line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-set statusline=%<\ %n:%f\ %m%r%y%=%-35.(line:\ %l\ of\ %L,\ col:\ %c%V\ (%P)%)
-
-"Git branch
-function! GitBranch()
-    let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
-    if branch != ''
-        return 'git: ' . substitute(branch, '\n', '', 'g') . ' |'
-    en
-    return ''
-endfunction
-
-
-" git branch settings
-"
-let g:git_branch_status_head_current=1
-" This will show just the current head branch name 
-" 
-let g:git_branch_status_text="git"
-" This will show 'text' before the branches. If not set ' Git ' (with a trailing
-" left space") will be displayed.
-"
-"let g:git_branch_status_nogit="Not a Git repo"
-" The message when there is no Git repository on the current dir
-"
-" let g:git_branch_status_around=""
-" Characters to put around the branch strings. Need to be a pair or characters,
-" the first will be on the beginning of the branch string and the last on the
-" end.
-" 
-let g:git_branch_status_ignore_remotes=1
-" Ignore the remote branches. If you don't want information about them, this can
-" make things works faster.
-"
-" let g:git_branch_check_write=<something>
-" Check the current branch if it's the same branch where the file was loaded, 
-" before saving the file.
-"
-
-
-" zencoding settings
-let g:user_zen_expandabbr_key = '<c-e>'
-let g:user_zen_next_key = '<c-n>'
-let NERDTreeIgnore=['\.pyc$', '\~$'] 
-
-function LoadDjangoGoodies()
-
-	" Django customization
-	" it only works if you are at base of django site
-	if filewritable('settings.py')
-
-		" set DJANGO_SETTINGS_MODULE
-		let $DJANGO_SETTINGS_MODULE=split( getcwd(),'/')[-1].".settings"
-		" set right type of file, python.django for .py files,
-		" htmldjango.django_template.xhtml or htmldjango.django_template.html
-		" for html files. This bigname for html ft is to use both syntax of
-		" Dave Hodder and SnipMate of Michael Sanders (and xhtml/html goodies
-		" too)
-		let l:escapefromhere=0
-    	if &ft=="python"
-			set ft=python.django
-		elseif &ft=="html" || &ft=="xhtml"
-			set ft=htmldjango.html
-		else
-			let l:escapefromhere=1
-		endif
-
-		if l:escapefromhere == 0
-			" Set python path on enviroment, vim and python
-			" if you are at /www/mysite/ we add to path /www and /www/mysite
-			" so can complete mysite.
-			let $PYTHONPATH .= ":/".join(split( getcwd(),'/')[0:-2],'/')."/:/".join(split( getcwd(),'/')[0:-1],'/')."/"
-			exec "set path+='/".join(split( getcwd(),'/')[0:-2],'/')."/,/".join(split( getcwd(),'/')[0:-1],'/')."/'"
-			python import os,sys,vim
-			exec "python sys.path.insert(0,'/".join(split( getcwd(),'/')[0:-2],'/')."')"
-			exec "python sys.path.insert(0,'/".join(split( getcwd(),'/')[0:-1],'/')."')"
-
-		endif
-	endif
-endfunction
-
-
-" Python customization {
-"function LoadPythonGoodies()
-
-	"if &ft=="python"||&ft=="html"||&ft=="xhtml"
-
-		"" settings for django, for something unknow I need to call before python
-		"" path set
-		"call LoadDjangoGoodies()
-
-		"" set python path to vim
-        "python << EOF
-"import os, sys, vim
-
-"for p in sys.path:
-    "if os.path.isdir(p):
-		"vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
-"EOF
-
-		"" some nice adjustaments to show errors
-        "syn match pythonError "^\s*def\s\+\w\+(.*)\s*$" display 
-		"syn match pythonError "^\s*class\s\+\w\+(.*)\s*$" display 
-		"syn match pythonError "^\s*for\s.*[^:]\s*$" display 
-		"syn match pythonError "^\s*except\s*$" display 
-		"syn match pythonError "^\s*finally\s*$" display 
-		"syn match pythonError "^\s*try\s*$" display 
-		"syn match pythonError "^\s*else\s*$" display 
-		"syn match pythonError "^\s*else\s*[^:].*" display 
-		""syn match pythonError "^\s*if\s.*[^\:]$" display 
-		"syn match pythonError "^\s*except\s.*[^\:]$" display 
-		"syn match pythonError "[;]$" display 
-		"syn keyword pythonError         do  
-
-        "let python_highlight_builtins = 1
-        "let python_highlight_exceptions = 1
-        "let python_highlight_string_formatting = 1
-        "let python_highlight_string_format = 1
-        "let python_highlight_string_templates = 1
-        "let python_highlight_indent_errors = 1
-        "let python_highlight_space_errors = 1
-        "let python_highlight_doctests = 1
-
-		"" complain to PEP 8 (Style Guide for Python Code) : http://www.python.org/dev/peps/pep-0008/
-		"set ai tw=79 ts=4 sts=4 sw=4 et
-	
-	"endif
-
-"endfunction
-
-"if !exists("myautocmds")
-	"let g:myautocmds=1
-
-	""call LoadPythonGoodies()
-	""autocmd Filetype python,html,xhtml call LoadPythonGoodies()
-	"au BufNewFile,BufRead *.py,*.html call LoadPythonGoodies()
-
-	"" Omni completion
-	"autocmd FileType python set omnifunc=pythoncomplete#Complete
-	"autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-	"autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-	"autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-"endif
-
-map <leader>jt  <Esc>:%!json_xs -f json -t json-pretty<CR>
-
-" copy current line, paste after this line, replace all characters with '='
-nnoremap <leader>1 yypVr=
-
-
-
-" TwitVim settings
-let twitvim_browser_cmd = 'open -a Google\ Chrome'
-let g:twitvim_enable_python=1
-
-map <LocalLeader>tf :FriendsTwitter<cr>
-
-" Perl, Python, shell scripts and javascript visual mode commenting 
-"autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap u :-1/^#/s///<CR>
-"autocmd BufNewFile,BufRead *.py,*.pl,*.sh vmap c :-1/^/s//#/<CR>
- 
-"autocmd BufNewFile,BufRead *.js vmap u :-1/^\/\//s///<CR>
-"autocmd BufNewFile,BufRead *.js vmap c :-1/^/s//\/\//<CR>
-
-"let g:xml_syntax_folding=1
-"au FileType xml setlocal foldmethod=syntax
-
-function! s:Terminal()
-  execute 'ConqueTermSplit bash --login'
-endfunction
-command! Terminal call s:Terminal()
-
-let g:ConqueTerm_Color = 0
-let g:ConqueTerm_TERM = 'vt100'
-let g:ConqueTerm_ReadUnfocused = 0
-let g:ConqueTerm_CWInsert = 0
-
-let g:ConqueTerm_PromptRegex = '^\w\+@[0-9A-Za-z_.-]\+:[0-9A-Za-z_./\~,:-]\+\$'
-
-
-
-" Show syntax highlighting groups for word under cursor
-nmap <C-S-P> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-
-
-" TODO
-au BufNewFile,BufRead *.todo setf todo
-
-" set up some mappings for todo list
-map <F5> o____: 
-map! <F5> ____: 
-map <F6> <esc>0:s/____/DONE/g<cr>
-map! <F6> <esc>mz_:s/____/DONE/g<cr>`za
-
-
-" allows OS clipboard to be used in vim
-" set clipboard=unnamed
-

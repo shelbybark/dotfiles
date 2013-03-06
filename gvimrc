@@ -16,7 +16,6 @@ set guioptions-=L                 " Don't show right scrollbar
 set fuoptions=maxvert,maxhorz     " really go full screen
 
 
-set background=light
 "colorscheme solarized
 colorscheme vilight
 

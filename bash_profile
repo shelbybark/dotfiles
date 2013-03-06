@@ -39,6 +39,11 @@ if [[ $platform == 'osx' ]]; then
     alias ssh-coltrane="ssh steven@204.15.50.55"
     alias ssh-bniweb="ssh steven@12.48.41.5"
     alias ssh-bniweb04="ssh steven@204.15.50.51"
+    alias ssh-davenport="ssh -i ~/.ssh/aws_key.pem ubuntu@ec2-174-129-135-164.compute-1.amazonaws.com"
+    alias ssh-boone-aws-temp="ssh -i ~/.ssh/boone.pem root@54.243.35.88"
+    alias ssh-boone-aws-main="ssh -i ~/.ssh/boone.pem root@107.21.236.110"
+    alias ssh-boone-aws-natchez="ssh -i ~/.ssh/boone.pem root@107.22.198.145"
+    alias ssh-boone-aws-ads="ssh -i ~/.ssh/boone.pem ubuntu@54.243.66.233"
     alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
 fi
 if [[ $platform == 'linux' ]]; then
@@ -58,6 +63,7 @@ alias rmpyc="find . -name '*.pyc' -print0|xargs -0 rm"
 alias n='git status'
 alias gd='git diff'
 alias ga='git add'
+alias gap='git add -p'
 alias gaa='git add .'
 alias gaau='git add -u'
 alias gp='git push'
@@ -72,6 +78,7 @@ alias svnpull='git stash && git svn rebase && git stash apply'
 alias svnpush='git stash && git svn dcommit && git stash apply'
 alias topm="top -o rsize"
 alias topc="top -o cpu"
+alias clear-dns="dscacheutil -flushcache"
 
 alias whatismyip='curl ifconfig.me'
 
