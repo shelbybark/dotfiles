@@ -15,7 +15,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'Townk/vim-autoclose'
+"Bundle 'Townk/vim-autoclose'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "honza/snipmate-snippets"
@@ -28,6 +28,13 @@ Bundle 'shelbybark/vilight'
 Bundle 'vim-htmldjango_omnicomplete'
 Bundle 'django.vim'
 Bundle 'tomasr/molokai'
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'jQuery'
+Bundle "Bundle 'git://git.wincent.com/command-t.git'"
+Bundle 'mattn/zencoding-vim'
+Bundle 'toranb/vim-django-support'
+Bundle 'Raimondi/delimitMate'
+
  
 
 
@@ -68,7 +75,7 @@ set number                        " Show line numbers.
 set ruler                         " Show cursor position.
 "set wildmode=list:longest         " Complete files like a shell.
 "set wildmenu                      " Enhanced command line completion.
-set wildignore=*.o,*.obj,*~       "stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~,*.pyc       "stuff to ignore when tab completing
 set novisualbell
 set noerrorbells
 set history=1000                  " Store lots of :cmdline history
@@ -95,7 +102,12 @@ set background=dark
 colorscheme molokai
 
 
-autocmd FileType python setlocal tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4 
+autocmd FileType css setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4 
+au FileType python set ft=python.django
+au FileType html set ft=htmldjango.html
+au FileType html let delimitMate_matchpairs = "(:),[:]"
+
 
 " *********************************************
 " *                 Functions                 *
@@ -153,8 +165,8 @@ nmap gO O<esc>
 imap <C-l> <Space>=><Space>
 
 " indent/unindent visual mode selection with tab/shift+tab
-vmap <tab> >gv
-vmap <s-tab> <gv
+"vmap <tab> >gv
+"vmap <s-tab> <gv
 
 " F7 reformats the whole file and leaves you where you were (unlike gg)
 map <silent> <F7> mzgg=G'z :delmarks z<CR>:echo "Reformatted."<CR>
@@ -172,11 +184,57 @@ map <leader>a :call AckGrep()<CR>
 " AckVisual current selection
 vmap <leader>a :call AckVisual()<CR>
 
+nnoremap <tab> %
+vnoremap <tab> %
+
 " File tree browser - backslash
 map <F2> :NERDTreeToggle<CR>
 " File tree browser showing current file - pipe (shift-backslash)
 map \| :NERDTreeFind<CR>
 
+" For mac users (using the 'apple' key)
+map <D-S-]> gt
+map <D-S-[> gT
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
+
+" Mappings for a recovering TextMate user {{{1
+" Indentation {{{2
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Press F4 to toggle highlighting on/off, and show current value.
+:noremap <F4> :set hlsearch! hlsearch?<CR>
+
+" zencoding settings
+let g:user_zen_expandabbr_key = '<c-e>'
+let g:user_zen_next_key = '<c-n>'
+let NERDTreeIgnore=['\.pyc$', '\~$'] 
+
+if has('mouse')
+  set mouse=a
+endif
+
+" copy current line, paste after this line, replace all characters with '='
+nnoremap <leader>1 yypVr=
+
+" Control-tab for auto-complete
+inoremap <C-TAB> <C-X><C-O>
+
+" 'space' runs macro 'q'
+:noremap <Space> @q
+
+let delimitMate_expand_cr=1
 
 " *********************************************
 " *        Local Vimrc Customization          *
