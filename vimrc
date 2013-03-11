@@ -34,6 +34,7 @@ Bundle "Bundle 'git://git.wincent.com/command-t.git'"
 Bundle 'mattn/zencoding-vim'
 Bundle 'toranb/vim-django-support'
 Bundle 'Raimondi/delimitMate'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
  
 
@@ -53,7 +54,12 @@ filetype plugin indent on         " load file type plugins + indentation
 set showmode                      " Display the mode you're in.
 set showmatch                     " Show matching brackets/parenthesis
 
-set nowrap                        " don't wrap lines
+"set nowrap                        " don't wrap lines
+set wrap
+set textwidth=79
+set formatoptions=qrn1
+set linebreak
+"set colorcolumn=85
 set tabstop=2 shiftwidth=2        " a tab is two spaces (or set this to 4)
 set expandtab                     " use spaces, not tabs (optional)
 set backspace=indent,eol,start    " backspace through everything in insert mode"
