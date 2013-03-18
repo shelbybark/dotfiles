@@ -6,7 +6,11 @@ call vundle#rc()
 
  " let Vundle manage Vundle
  " required! 
+ " On Fresh vim, type this:
+ " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 Bundle 'gmarik/vundle'
+ " On Fresh vim, type this:
+ " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
  " My Bundles here:
  "
@@ -35,6 +39,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'toranb/vim-django-support'
 Bundle 'Raimondi/delimitMate'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'jwhitley/vim-matchit'
 
  
 
