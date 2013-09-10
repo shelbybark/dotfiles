@@ -22,7 +22,7 @@ Bundle 'Lokaltog/vim-powerline'
 "Bundle 'Townk/vim-autoclose'
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
-Bundle "honza/snipmate-snippets"
+Bundle "honza/vim-snippets"
 Bundle 'garbas/vim-snipmate'
 Bundle 'tpope/vim-surround'
 Bundle 'matthewtodd/vim-twilight'
@@ -64,7 +64,8 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 set linebreak
-"set colorcolumn=85
+set showbreak=...
+set colorcolumn=80
 set tabstop=2 shiftwidth=2        " a tab is two spaces (or set this to 4)
 set expandtab                     " use spaces, not tabs (optional)
 set backspace=indent,eol,start    " backspace through everything in insert mode"
@@ -80,7 +81,7 @@ set foldmethod=indent             "fold based on indent
 set foldnestmax=3                 "deepest fold is 3 levels
 set nofoldenable                  "dont fold by default
 
-set hidden                        " Handle multiple buffers better.
+"set hidden                        " Handle multiple buffers better.
 set title                         " Set the terminal's title
 set number                        " Show line numbers.
 set ruler                         " Show cursor position.
@@ -99,15 +100,24 @@ set mousehide
 set ttymouse=xterm2
 set sidescroll=1
 
+" do NOT put a carriage return at the end of the last line! if you are programming
+" for the web the default will cause http headers to be sent. that's bad.
+set binary noeol
+
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
-set directory=/tmp                " Keep swap files in one location
+"set directory=/tmp                " Keep swap files in one location
+set directory=$HOME/.vim_swp/
 set timeoutlen=500
 
 set laststatus=2                  " Show the status line all the time
-set statusline=[%n]\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
+set statusline=[%n]\ %{fugitive#statusline()}\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
 set t_Co=256                      " Set terminal to 256 colors
+"
+" Cursor highlights **************************************************************
+set cursorline
+
 " Colorscheme
 set background=dark
 colorscheme molokai
@@ -175,6 +185,9 @@ nmap gO O<esc>
 " Shortcut for =>
 imap <C-l> <Space>=><Space>
 
+" Search and remove ^m line endings
+noremap <leader>xm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
 " indent/unindent visual mode selection with tab/shift+tab
 "vmap <tab> >gv
 "vmap <s-tab> <gv
@@ -224,8 +237,13 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
+map <F3> :%! tidy -q -i -ashtml % <CR>
+
 " Press F4 to toggle highlighting on/off, and show current value.
 :noremap <F4> :set hlsearch! hlsearch?<CR>
+
+" copy current line, paste after this line, replace all characters with '='
+nnoremap <leader>1 yypVr=
 
 " zencoding settings
 let g:user_zen_expandabbr_key = '<c-e>'
@@ -246,6 +264,29 @@ inoremap <C-TAB> <C-X><C-O>
 :noremap <Space> @q
 
 let delimitMate_expand_cr=1
+"
+" Use the same symbols as TextMate for tabstops and EOLs
+if has("gui_running")
+		set listchars=tab:▸\ ,eol:¬,trail:·
+        highlight SpellBad term=underline gui=undercurl guisp=Orange 
+        " Ready for new persistent undos
+        set undofile
+        set undodir=~/.undo
+endif
+
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" Fix Cursor in TMUX
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
 
 " *********************************************
 " *        Local Vimrc Customization          *

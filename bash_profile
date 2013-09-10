@@ -18,9 +18,12 @@ if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
     alias mate='~/bin/mate'
     alias mater='~/bin/mate .'
+    alias vi='vim'
     alias vimr='mvim .'
     alias fd='fab production deploy'
     alias fds='fab production static_deploy'
+    alias fdcs='fab production collect_static'
+    alias fdm='fab production migrate'
     alias cw='compass watch'
     alias apacher='sudo apachectl graceful'
     alias mysql='/usr/local/mysql/bin/mysql'
@@ -37,14 +40,28 @@ if [[ $platform == 'osx' ]]; then
     alias sbshell="ssh shelbybark@localhost -A -p 2222"
     alias ssh-royalfine="ssh -p 2222 royal@royalfinecleaners.com"
     alias ssh-coltrane="ssh steven@204.15.50.55"
+    alias ssh-parker="ssh steven@12.48.41.4"
     alias ssh-bniweb="ssh steven@12.48.41.5"
     alias ssh-bniweb04="ssh steven@204.15.50.51"
-    alias ssh-davenport="ssh -i ~/.ssh/aws_key.pem ubuntu@ec2-174-129-135-164.compute-1.amazonaws.com"
+    alias ssh-davenport="ssh -i ~/.ssh/aws_key.pem ubuntu@ec2-174-129-107-142.compute-1.amazonaws.com"
     alias ssh-boone-aws-temp="ssh -i ~/.ssh/boone.pem root@54.243.35.88"
     alias ssh-boone-aws-main="ssh -i ~/.ssh/boone.pem root@107.21.236.110"
     alias ssh-boone-aws-natchez="ssh -i ~/.ssh/boone.pem root@107.22.198.145"
     alias ssh-boone-aws-ads="ssh -i ~/.ssh/boone.pem ubuntu@54.243.66.233"
     alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
+		alias hcl-start="hcl start"
+		alias hcl-stop="hcl stop"
+		alias hcl-resume="hcl resume"
+		alias hcl-note="hcl note"
+		alias hcl-show="hcl show"
+		alias hcl-aliases="hcl aliases"
+		alias hcl-set="hcl set"
+		alias hcl-unset="hcl unset"
+		alias hcl-help="hcl --help"
+		if [ -f `brew --prefix`/etc/bash_completion ]; then
+			. `brew --prefix`/etc/bash_completion
+		fi
+
 fi
 if [[ $platform == 'linux' ]]; then
     alias ls='ls --color'
@@ -56,6 +73,7 @@ fi
 #export TERM=xterm-color
 #export TERM=xterm-256color
 export TERM=screen-256color
+
 alias ll='ls -hl'
 alias lls='ll -S'
 alias lla='ll -a'
