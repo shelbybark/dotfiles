@@ -1,6 +1,6 @@
 [user]
-	email = steven@shelbybark.com
-	name = Steven Crawford
+	email = 
+	name = 
 
 [color]
     ui = auto
@@ -39,7 +39,7 @@
 
 [core]
     whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-		excludesfile = /Users/shelbybark/.gitignore
+	excludesfile = /Users/shelbybark/.gitignore
 		;editor = mvim --nofork
 		editor = vim
 		;autocrlf = input
@@ -47,3 +47,11 @@
 [github]
 		user = shelbybark
 		token = 7d170b41a88fabbda90b9bba02a22938
+[push]
+	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

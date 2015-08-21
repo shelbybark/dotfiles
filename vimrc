@@ -1,47 +1,66 @@
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+"call vundle#rc()
+call vundle#begin()
 
 
  " let Vundle manage Vundle
- " required! 
+ " required!
  " On Fresh vim, type this:
  " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
  " On Fresh vim, type this:
  " git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 
  " My Bundles here:
  "
  " original repos on github
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'Lokaltog/vim-powerline'
-"Bundle 'Townk/vim-autoclose'
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "honza/vim-snippets"
-Bundle 'garbas/vim-snipmate'
-Bundle 'tpope/vim-surround'
-Bundle 'matthewtodd/vim-twilight'
-Bundle 'vim-scripts/twilight256.vim'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'shelbybark/vilight'
-Bundle 'vim-htmldjango_omnicomplete'
-Bundle 'django.vim'
-Bundle 'tomasr/molokai'
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'jQuery'
-Bundle "Bundle 'git://git.wincent.com/command-t.git'"
-Bundle 'mattn/zencoding-vim'
-Bundle 'toranb/vim-django-support'
-Bundle 'Raimondi/delimitMate'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Bundle 'jwhitley/vim-matchit'
+Plugin 'tpope/vim-fugitive'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tomtom/tlib_vim'
 
- 
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+"Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
+Plugin 'zeis/vim-kolor'
+Plugin 'jonathanfilip/vim-lucius'
+"Plugin 'Townk/vim-autoclose'
+Plugin 'tpope/vim-surround'
+Plugin 'matthewtodd/vim-twilight'
+Plugin 'vim-scripts/twilight256.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'shelbybark/vilight'
+Plugin 'vim-htmldjango_omnicomplete'
+Plugin 'django.vim'
+Plugin 'tomasr/molokai'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'jQuery'
+"Plugin "Plugin 'git://git.wincent.com/command-t.git'"
+"Plugin 'mattn/zencoding-vim'
+"Plugin 'mattn/emmet-vim'
+Plugin 'rstacruz/sparkup'
+Plugin 'toranb/vim-django-support'
+Plugin 'Raimondi/delimitMate'
+Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Plugin 'jwhitley/vim-matchit'
+Plugin 'zenorocha/dracula-theme'
+Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
+Bundle 'ervandew/supertab'
+
+Plugin 'morhetz/gruvbox'
+
+"Plugin 'flazz/vim-colorschemes'
+
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
 
 
 filetype plugin indent on     " required!
@@ -70,7 +89,6 @@ set tabstop=2 shiftwidth=2        " a tab is two spaces (or set this to 4)
 set expandtab                     " use spaces, not tabs (optional)
 set backspace=indent,eol,start    " backspace through everything in insert mode"
 set autoindent                    " match indentation of previous line
-set pastetoggle=<F2>
 
 set incsearch                     " Find as you type search
 set hlsearch                      " Highlight search terms
@@ -120,11 +138,15 @@ set cursorline
 
 " Colorscheme
 set background=dark
+"colorscheme molokai
+let g:solarized_termtrans = 1
+let g:solarized_termcolors=256
+"colorscheme solarized
 colorscheme molokai
 
 
-autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4 
-autocmd FileType css setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4 
+autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType css setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
 au FileType html let delimitMate_matchpairs = "(:),[:]"
@@ -213,6 +235,7 @@ vnoremap <tab> %
 
 " File tree browser - backslash
 map <F2> :NERDTreeToggle<CR>
+map <leader>t :NERDTreeToggle<cr>
 " File tree browser showing current file - pipe (shift-backslash)
 map \| :NERDTreeFind<CR>
 
@@ -244,18 +267,21 @@ map <F3> :%! tidy -q -i -ashtml % <CR>
 
 " copy current line, paste after this line, replace all characters with '='
 nnoremap <leader>1 yypVr=
+nnoremap <leader>2 yypVr-
 
 " zencoding settings
-let g:user_zen_expandabbr_key = '<c-e>'
-let g:user_zen_next_key = '<c-n>'
-let NERDTreeIgnore=['\.pyc$', '\~$'] 
+"let g:user_zen_expandabbr_key = '<c-e>'
+"let g:user_zen_next_key = '<c-n>'
+
+" emmet settings
+"let g:user_emmet_leader_key='<C-Z>'
+
+let NERDTreeIgnore=['\.pyc$', '\~$']
+let g:NERDTreeDirArrows=0
 
 if has('mouse')
   set mouse=a
 endif
-
-" copy current line, paste after this line, replace all characters with '='
-nnoremap <leader>1 yypVr=
 
 " Control-tab for auto-complete
 inoremap <C-TAB> <C-X><C-O>
@@ -268,7 +294,7 @@ let delimitMate_expand_cr=1
 " Use the same symbols as TextMate for tabstops and EOLs
 if has("gui_running")
 		set listchars=tab:▸\ ,eol:¬,trail:·
-        highlight SpellBad term=underline gui=undercurl guisp=Orange 
+        highlight SpellBad term=underline gui=undercurl guisp=Orange
         " Ready for new persistent undos
         set undofile
         set undodir=~/.undo
@@ -286,6 +312,44 @@ else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+" Airline Settings
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_detect_paste=1
+"let g:airline_theme='badwolf'
+"let g:airline_theme='kalisi'
+let g:airline_theme='luna'
+
+"let g:Powerline_symbols = 'fancy'
+
+" let g:lucius_style='dark'
+" let g:contrast='high'
+" let g:lucius_contrast_bg='high'
+
+set pastetoggle=<F5>
+set pastetoggle=<leader>p
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" " better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:molokai_original = 1
+let g:rehash256 = 1
 
 
 " *********************************************
