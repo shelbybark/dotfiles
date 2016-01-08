@@ -54,6 +54,8 @@ Plugin 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
 
 Plugin 'morhetz/gruvbox'
+Plugin 'tpope/vim-obsession'
+Plugin 'sjl/badwolf'
 
 "Plugin 'flazz/vim-colorschemes'
 
@@ -143,6 +145,7 @@ let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme molokai
+colorscheme badwolf
 
 
 autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
@@ -278,6 +281,8 @@ nnoremap <leader>2 yypVr-
 
 let NERDTreeIgnore=['\.pyc$', '\~$']
 let g:NERDTreeDirArrows=0
+let g:NERDTreeWinSize=50
+let g:NERDTreeWinPos = "right"
 
 if has('mouse')
   set mouse=a

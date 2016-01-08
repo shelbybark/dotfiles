@@ -41,17 +41,20 @@ if [[ $platform == 'osx' ]]; then
     alias ssh-royalfine="ssh -p 2222 royal@royalfinecleaners.com"
     alias ssh-coltrane="ssh steven@204.15.50.55"
     alias ssh-parker="ssh steven@12.48.41.4"
-    alias ssh-bniweb="ssh steven@12.48.41.5"
+    #alias ssh-bniweb="ssh steven@12.48.41.5"
+    alias ssh-bniweb="ssh steven@204.15.50.55"
     alias ssh-bniweb04="ssh steven@204.15.50.51"
     alias ssh-davenport="ssh -i ~/.ssh/aws_key.pem ubuntu@ec2-174-129-107-142.compute-1.amazonaws.com"
     #alias ssh-boone-aws-temp="ssh -i ~/.ssh/boone.pem root@54.243.35.88"
     alias ssh-boone-aws-temp="ssh shelbybark@54.86.72.91"
     alias ssh-boone-aws-main="ssh -i ~/.ssh/boone.pem root@107.21.236.110"
     alias ssh-boone-aws-natchez="ssh -i ~/.ssh/boone.pem root@107.22.198.145"
-    alias ssh-boone-aws-ads="ssh -i ~/.ssh/boone.pem ubuntu@54.243.66.233"
+    #alias ssh-boone-aws-ads="ssh -i ~/.ssh/boone.pem ubuntu@54.243.66.233"
+    alias ssh-boone-aws-ads="ssh -i ~/.ssh/boone.pem shelbybark@54.243.66.233"
     alias ssh-boone-aws-new="ssh shelbybark@web03.boone.1ux.it"
     #alias ssh-boone-aws-admin="ssh shelbybark@10.53.3.40"
     alias ssh-boone-aws-admin="ssh shelbybark@adm01.boone.1ux.it"
+    alias ssh-boone-aws-web="ssh shelbybark@web03.boone.1ux.it"
     alias ssh-boone-aws-mag="ssh shelbybark@web02.boone.1ux.it"
     alias ssh-rpc-untangle="ssh root@10.1.1.1"
     alias cdf='cd `osascript -e "tell application \"Finder\" to if window 1 exists then if target of window 1 as string is not \":\" then get POSIX path of (target of window 1 as alias)"`'
@@ -140,7 +143,8 @@ then
                 #export PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W$(vcprompt) \$ \[\033[00m\]'
         else
             if [[ $platform == 'osx' ]]; then
-                export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch)\[\033[01;36m\]\$ \[\033[00m\]'
+                #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch)\[\033[01;36m\]\$ \[\033[00m\]'
+                export PS1='\[\033[01;30m\]\u \[\033[01;36m\]\W\[\033[01;30m\]$(git-radar --bash --fetch) \[\033[01;36m\]\$ \[\033[00m\]'
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
             fi
             if [[ $platform == 'linux' ]]; then

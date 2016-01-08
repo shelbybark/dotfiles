@@ -17,7 +17,8 @@ set fuoptions=maxvert,maxhorz     " really go full screen
 
 
 "colorscheme solarized
-colorscheme vilight
+"colorscheme vilight
+colorscheme badwolf
 
 """"""""""""""""""""""""""""""
 " airline

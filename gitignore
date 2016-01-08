@@ -6,3 +6,4 @@ nesh
 fabfile.py*
 *.DS_Store
 *.swp
+Session.vim
