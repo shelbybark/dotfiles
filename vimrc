@@ -21,14 +21,12 @@ Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'honza/vim-snippets'
 Plugin 'garbas/vim-snipmate'
 Plugin 'tomtom/tlib_vim'
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'Lokaltog/vim-powerline'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'zeis/vim-kolor'
 Plugin 'jonathanfilip/vim-lucius'
-"Plugin 'Townk/vim-autoclose'
 Plugin 'tpope/vim-surround'
 Plugin 'matthewtodd/vim-twilight'
 Plugin 'vim-scripts/twilight256.vim'
@@ -40,9 +38,6 @@ Plugin 'django.vim'
 Plugin 'tomasr/molokai'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jQuery'
-"Plugin "Plugin 'git://git.wincent.com/command-t.git'"
-"Plugin 'mattn/zencoding-vim'
-"Plugin 'mattn/emmet-vim'
 Plugin 'rstacruz/sparkup'
 Plugin 'toranb/vim-django-support'
 Plugin 'Raimondi/delimitMate'
@@ -52,12 +47,17 @@ Plugin 'zenorocha/dracula-theme'
 Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
-
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-obsession'
 Plugin 'sjl/badwolf'
 
+"OLD 
 "Plugin 'flazz/vim-colorschemes'
+"Plugin 'git://git.wincent.com/command-t.git'"
+"Plugin 'mattn/zencoding-vim'
+"Plugin 'mattn/emmet-vim'
+"Plugin 'Townk/vim-autoclose'
+"Plugin 'Lokaltog/vim-powerline'
 
 
 
@@ -145,7 +145,7 @@ let g:solarized_termtrans = 1
 let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme molokai
-colorscheme badwolf
+"colorscheme badwolf
 
 
 autocmd FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
@@ -319,12 +319,28 @@ else
 endif
 
 " Airline Settings
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+let g:airline_symbols = {}
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 let g:airline_detect_paste=1
 "let g:airline_theme='badwolf'
 "let g:airline_theme='kalisi'
 let g:airline_theme='luna'
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
 
 "let g:Powerline_symbols = 'fancy'
 
@@ -355,6 +371,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:molokai_original = 1
 let g:rehash256 = 1
+
+
+
 
 
 " *********************************************

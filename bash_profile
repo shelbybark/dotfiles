@@ -123,6 +123,8 @@ alias takeover="tmux detach -a"
 
 alias base='source $HOME/.dotfiles/bash_scripts/base.sh'
 
+alias tmux-reload="tmux source-file ~/.tmux.conf"
+
 
 source $HOME/.dotfiles/bash_scripts/z.sh
 
@@ -134,6 +136,11 @@ parse_git_branch() {
 }
 #  PS1="\w\$(parse_git_branch) $ " 
 
+#GIT_RADAR_FORMAT=" \x01<your colour code>\x02git:(\x01\033[0m\x02%{remote: }%{branch}%{ :local}\x01<your colour code>\x02)\x01\033[0m\x02%{ :changes}"
+export GIT_RADAR_FORMAT=" \x01\\033[0;37m\x02git:(\x01\033[0m\x02%{remote: }%{branch}%{ :local}\x01\\033[0;37m\x02)\x01\033[0m\x02%{ :changes}"
+
+#export GIT_RADAR_COLOR_BRANCH='\\033[0;33m'
+export GIT_RADAR_COLOR_BRANCH='\x01\033[1;37m\x02'
 
 if [ "$TERM" != 'dumb' ] && [ -n "$BASH" ] && [ -n "$PS1" ]
 then
@@ -144,7 +151,7 @@ then
         else
             if [[ $platform == 'osx' ]]; then
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(parse_git_branch)\[\033[01;36m\]\$ \[\033[00m\]'
-                export PS1='\[\033[01;30m\]\u \[\033[01;36m\]\W\[\033[01;30m\]$(git-radar --bash --fetch) \[\033[01;36m\]\$ \[\033[00m\]'
+                export PS1='\[\033[01;32m\]\u \[\033[01;36m\]\W\[\033[01;32m\]$(git-radar --bash --fetch) \[\033[01;36m\]\$ \[\033[00m\]'
                 #export PS1='\[\033[01;30m\]\u@\h \[\033[01;36m\]\W\[\033[01;30m\]$(vcprompt) \[\033[01;36m\]\$ \[\033[00m\]'
             fi
             if [[ $platform == 'linux' ]]; then
@@ -304,5 +311,25 @@ bind '"\t":menu-complete'
     #SCREEN_COLORS=`tput colors`
 #fi
 
-complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+#complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+
+# 
+_complete_ssh_hosts ()
+{
+        COMPREPLY=()
+        cur="${COMP_WORDS[COMP_CWORD]}"
+        comp_ssh_hosts=`cat ~/.ssh/known_hosts | \
+                        cut -f 1 -d ' ' | \
+                        sed -e s/,.*//g | \
+                        grep -v ^# | \
+                        uniq | \
+                        grep -v "\[" ;
+                cat ~/.ssh/config | \
+                        grep "^Host " | \
+                        awk '{print $2}'
+                `
+        COMPREPLY=( $(compgen -W "${comp_ssh_hosts}" -- $cur))
+        return 0
+}
+complete -F _complete_ssh_hosts ssh
 
