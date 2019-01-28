@@ -8,6 +8,8 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
   platform='freebsd'
 fi
 
+PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 if [[ $platform == 'osx' ]]; then
     # fix snow leopard's inclusion of resource fork files in tar
     export COPYFILE_DISABLE=true
@@ -18,8 +20,9 @@ if [[ $platform == 'osx' ]]; then
     alias ls='ls -G'
     alias mate='~/bin/mate'
     alias mater='~/bin/mate .'
-    alias vi='vim'
-    alias vimr='mvim .'
+    alias vi='nvim'
+    alias vim='nvim'
+    #alias vimr='mvim .'
     alias fd='fab production deploy'
     alias fds='fab production static_deploy'
     alias fdcs='fab production collect_static'
@@ -86,8 +89,8 @@ fi
 
 set t_Co=256
 #export TERM=xterm-color
-#export TERM=xterm-256color
-export TERM=screen-256color
+export TERM=xterm-256color
+#export TERM=screen-256color
 
 alias ll='ls -hl'
 alias lls='ll -S'
@@ -241,6 +244,8 @@ set -o vi
 # make tab cycle through commands instead of listing 
 bind '"\t":menu-complete'
 
+# follow sym-link directories for tab completion
+bind 'set mark-symlinked-directories on'
 
 # TESTING
 #if [ "$TERM" = "xterm" ] ; then
@@ -333,3 +338,16 @@ _complete_ssh_hosts ()
 }
 complete -F _complete_ssh_hosts ssh
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# TMUX
+# test if tmux is available
+#if type tmux >/dev/null 2>&1; then
+  ## if not inside a tmux session, and if no session is started, start a new session
+  ## I only want this on my mac laptop.
+  #if [ -z "$TMUX" -a `uname` == Darwin ]; then
+      ## attach to session "martin" if there
+      #tmuxr || tmuxn
+  #fi
+#fi

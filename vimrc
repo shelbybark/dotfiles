@@ -17,9 +17,9 @@ Plugin 'gmarik/vundle'
  "
  " original repos on github
 Plugin 'tpope/vim-fugitive'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'honza/vim-snippets'
-Plugin 'garbas/vim-snipmate'
+"Plugin 'MarcWeber/vim-addon-mw-utils'
+"Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
 Plugin 'tomtom/tlib_vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
@@ -38,18 +38,24 @@ Plugin 'django.vim'
 Plugin 'tomasr/molokai'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jQuery'
-Plugin 'rstacruz/sparkup'
-Plugin 'toranb/vim-django-support'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}           
+Plugin 'vim-scripts/vim-django-support'
 Plugin 'Raimondi/delimitMate'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-Plugin 'jwhitley/vim-matchit'
+"Plugin 'jwhitley/vim-matchit'
 Plugin 'zenorocha/dracula-theme'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'Valloric/YouCompleteMe'
 Bundle 'ervandew/supertab'
 Plugin 'morhetz/gruvbox'
 Plugin 'tpope/vim-obsession'
 Plugin 'sjl/badwolf'
+Plugin 'rakr/vim-one'
+Plugin 'mhartington/oceanic-next'
+Plugin 'blueyed/vim-diminactive'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+
 
 "OLD 
 "Plugin 'flazz/vim-colorschemes'
@@ -61,9 +67,11 @@ Plugin 'sjl/badwolf'
 
 
 
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+"packadd! matchit " trying built-in matchit
 
 filetype plugin indent on     " required!
 
@@ -71,6 +79,10 @@ filetype plugin indent on     " required!
 " *                 Settings                  *
 " *********************************************
 
+
+" do NOT put a carriage return at the end of the last line! if you are programming
+" for the web the default will cause http headers to be sent. that's bad.
+set binary noeol
 
 set encoding=utf-8
 syntax enable
@@ -117,12 +129,8 @@ set sidescrolloff=7
 
 set mouse-=a
 set mousehide
-set ttymouse=xterm2
+"set ttymouse=xterm2
 set sidescroll=1
-
-" do NOT put a carriage return at the end of the last line! if you are programming
-" for the web the default will cause http headers to be sent. that's bad.
-set binary noeol
 
 set nobackup                      " Don't make a backup before overwriting a file.
 set nowritebackup                 " And again.
@@ -133,7 +141,8 @@ set timeoutlen=500
 set laststatus=2                  " Show the status line all the time
 set statusline=[%n]\ %{fugitive#statusline()}\ %<%.99f\ %h%w%m%r%y\ %{exists('*CapsLockStatusline')?CapsLockStatusline():''}%=%-16(\ %l,%c-%v\ %)%P
 
-set t_Co=256                      " Set terminal to 256 colors
+"set t_Co=256                      " Set terminal to 256 colors
+
 "
 " Cursor highlights **************************************************************
 set cursorline
@@ -142,9 +151,11 @@ set cursorline
 set background=dark
 "colorscheme molokai
 let g:solarized_termtrans = 1
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 "colorscheme solarized
 colorscheme molokai
+"colorscheme gruvbox
+"colorscheme one
 "colorscheme badwolf
 
 
@@ -153,6 +164,9 @@ autocmd FileType css setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 au FileType python set ft=python.django
 au FileType html set ft=htmldjango.html
 au FileType html let delimitMate_matchpairs = "(:),[:]"
+autocmd FileType html let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
+autocmd FileType php let b:match_words='<:>,<\@<=\([^/][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>'
+
 
 
 " *********************************************
@@ -325,13 +339,13 @@ let g:airline_symbols = {}
 let g:airline_detect_paste=1
 "let g:airline_theme='badwolf'
 "let g:airline_theme='kalisi'
-let g:airline_theme='luna'
+"let g:airline_theme='luna'
 
 " unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
+"let g:airline_left_sep = '»'
+"let g:airline_left_sep = '▶'
+"let g:airline_right_sep = '«'
+"let g:airline_right_sep = '◀'
 let g:airline_symbols.crypt = '🔒'
 let g:airline_symbols.linenr = '␊'
 let g:airline_symbols.linenr = '␤'
@@ -342,7 +356,16 @@ let g:airline_symbols.paste = 'Þ'
 let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
+
+let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#whitespace#checks = [ 'indent' ]
+"let g:airline#extensions#whitespace#skip_indent_check_ft = {'php': ['indent']}
+
+
+"autocmd FileType python let g:airline#extensions#whitespace#enabled = 1
+"let g:airline#extensions#whitespace#checks = [ 'indent' ]
+
 
 " let g:lucius_style='dark'
 " let g:contrast='high'
@@ -351,27 +374,31 @@ let g:airline_symbols.whitespace = 'Ξ'
 set pastetoggle=<F5>
 set pastetoggle=<leader>p
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+"" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+""let g:UltiSnipsExpandTrigger="<tab>"
+""let g:UltiSnipsJumpForwardTrigger="<c-b>"
+""let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+"" If you want :UltiSnipsEdit to split your window.
+"let g:UltiSnipsEditSplit="vertical"
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+"" make YCM compatible with UltiSnips (using supertab)
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" " better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+"" " better key bindings for UltiSnipsExpandTrigger
+"let g:UltiSnipsExpandTrigger = "<tab>"
+"let g:UltiSnipsJumpForwardTrigger = "<tab>"
+"let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-let g:molokai_original = 1
-let g:rehash256 = 1
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 
+
+" prettier
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
 
 
 
