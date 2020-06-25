@@ -13,7 +13,7 @@ PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 if [[ $platform == 'osx' ]]; then
     # fix snow leopard's inclusion of resource fork files in tar
     export COPYFILE_DISABLE=true
-    export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:usr/local/share/npm/bin:$PATH
+    export PATH=/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/usr/local/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:usr/local/share/npm/bin:$PATH
     #export PATH=/usr/local/mysql/bin:/usr/local/sbin:$HOME/django-trunk/django/bin:$HOME/bin:/Applications/android-sdk-mac_86/tools:$HOME/.gem/ruby/1.8/bin:/usr/local/git/libexec/git-core:$PATH
     export ARCHFLAGS='-arch i386 -arch x86_64'
     #export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:/usr/local/mysql/lib/"
@@ -29,8 +29,8 @@ if [[ $platform == 'osx' ]]; then
     alias fdm='fab production migrate'
     alias cw='compass watch'
     alias apacher='sudo apachectl graceful'
-    alias mysql='/usr/local/mysql/bin/mysql'
-    alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
+    #alias mysql='/usr/local/mysql/bin/mysql'
+    #alias mysqladmin='/usr/local/mysql/bin/mysqladmin'
     alias pydir='python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"'
     alias webby='python -m SimpleHTTPServer 9000'
     alias openr='open .'
@@ -351,3 +351,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
       #tmuxr || tmuxn
   #fi
 #fi
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"

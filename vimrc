@@ -33,13 +33,15 @@ Plugin 'vim-scripts/twilight256.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'shelbybark/vilight'
-Plugin 'vim-htmldjango_omnicomplete'
-Plugin 'django.vim'
-Plugin 'tomasr/molokai'
+"Plugin 'vim-htmldjango_omnicomplete'
+"Plugin 'django.vim'
+Plugin 'tweekmonster/django-plus.vim'
+"Plugin 'tomasr/molokai'
+Plugin 'justinmk/molokai'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'jQuery'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}           
-Plugin 'vim-scripts/vim-django-support'
+"Plugin 'vim-scripts/vim-django-support'
 Plugin 'Raimondi/delimitMate'
 Plugin 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 "Plugin 'jwhitley/vim-matchit'
@@ -53,7 +55,16 @@ Plugin 'sjl/badwolf'
 Plugin 'rakr/vim-one'
 Plugin 'mhartington/oceanic-next'
 Plugin 'blueyed/vim-diminactive'
-Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+"Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plugin 'haishanh/night-owl.vim'
+
+
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+
 
 
 
@@ -151,9 +162,10 @@ set cursorline
 set background=dark
 "colorscheme molokai
 let g:solarized_termtrans = 1
-"let g:solarized_termcolors=256
+""let g:solarized_termcolors=256
 "colorscheme solarized
-colorscheme molokai
+"colorscheme molokai
+colorscheme night-owl
 "colorscheme gruvbox
 "colorscheme one
 "colorscheme badwolf
@@ -397,8 +409,8 @@ set pastetoggle=<leader>p
 
 
 " prettier
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
+"let g:prettier#autoformat = 0
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml PrettierAsync
 
 
 
